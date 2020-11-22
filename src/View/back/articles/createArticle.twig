@@ -1,0 +1,35 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Create a New Article{% endblock %}
+
+{% block summary %}{% endblock %}
+
+{% block main %}
+    <main class="align-center">
+        <form class="form" method="post" action={{ url('articles!create') }}>
+            <fieldset>
+                <legend>
+                    <i class="fas fa-newspaper fa-2x"></i>
+                </legend>
+                <ul>
+                    <li>
+                        <label for="name">Name</label>
+                        <input id="name" name="name" type="text" maxlength="50" required placeholder="Type your Name">
+                    </li>
+                    <li>
+                        <label for="content">Content</label>
+                        <textarea id="content" name="content" rows="10" placeholder="Type your content"></textarea>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <input type="reset" value="Reset">
+                        <input type="submit" value="Create">
+                    </li>
+                </ul>
+            </fieldset>
+            <input name="date" type="hidden" value="{{ date()|date('Y-m-d H:i:s') }}">
+        </form>
+        <a class="btn-black btn-lg" href="{{ url('admin') }}">Quit</a>
+    </main>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Edit the Article{% endblock %}
+
+{% block summary %}{% endblock %}
+
+{% block main %}
+    <main class="align-center">
+        <form class="form" method="post" action={{ url('articles!update', {'id': article.id}) }}>
+            <fieldset>
+                <legend>
+                    <i class="fas fa-newspaper fa-2x"></i>
+                </legend>
+                <ul>
+                    <li>
+                        <label for="name">Name</label>
+                        <input id="name" name="name" type="text" maxlength="50" required value="{{ article.name }}">
+                    </li>
+                    <li>
+                        <label for="content">Content</label>
+                        <textarea id="content" name="content" rows="10">{{ article.content }}</textarea>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <input type="reset" value="Reset">
+                        <input type="submit" value="Update">
+                    </li>
+                </ul>
+            </fieldset>
+            <input name="date" type="hidden" value="{{ date()|date('Y-m-d H:i:s') }}">
+        </form>
+        <a class="btn-black btn-lg" href="{{ url('admin') }}">Quit</a>
+    </main>
+{% endblock %}

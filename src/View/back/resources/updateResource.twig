@@ -1,0 +1,42 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Edit a Resource{% endblock %}
+
+{% block summary %}{% endblock %}
+
+{% block main %}
+    <main class="align-center">
+        <form class="form" method="post" action={{ url('resources!update', {'id': resource.id}) }}>
+            <fieldset>
+                <legend>
+                    <i class="fas fa-info-circle fa-2x"></i>
+                </legend>
+                <ul>
+                    <li>
+                        <label for="name">Name*</label>
+                        <input id="name" name="name" type="text" maxlength="20" required value="{{ resource.name }}">
+                    </li>
+                    <li>
+                        <label for="link">Link*</label>
+                        <input id="link" name="link" type="text" maxlength="100" required value="{{ resource.link }}">
+                    </li>
+                    <li>
+                        <label for="category">Category*</label>
+                        <input id="category" name="category" type="text" maxlength="20" required value="{{ resource.category }}">
+                    </li>
+                    <li>
+                        <label for="description">Description*</label>
+                        <textarea id="description" name="description" rows="15" cols="30" required>{{ resource.description }}</textarea>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <input type="reset" value="Reset">
+                        <input type="submit" value="Update">
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
+        <a class="btn-black btn-lg" href="{{ url('admin') }}">Quit</a>
+    </main>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Asperger Articles{% endblock %}
+
+{% block summary %}Articles list about Asperger Syndrome{% endblock %}
+
+{% block main %}
+    <main class="container-90tn-80md-70wd">
+        <ul>
+            {% for article in allArticles %}
+                <li>
+                    <a class="btn-blue" href="{{ url('articles!read', {'id': article.id}) }}">{{ article.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Asperger Blog{% endblock %}
+
+{% block description %}Welcome page about Asperger Syndrome{% endblock %}
+
+{% block main %}
+    <main>
+        <p>This Asperger Syndrome blog was created to help people understand what Asperger Syndrome is !</p>
+
+        <ul class="row">
+            <li>
+                <a class="btn-red btn-circle" href="{{ url('articles') }}" accesskey="a" title="Asperger Articles">
+                    <i class="fas fa-newspaper fa-2x"></i> Articles
+                </a>
+            </li>
+            <li>
+                <a class="btn-blue btn-circle" href="{{ url('resources') }}" accesskey="r" title="Asperger Resources">
+                    <i class="fas fa-info-circle fa-2x"></i> Resources
+                </a>
+            </li>
+        </ul>
+    </main>
+{% endblock %}
