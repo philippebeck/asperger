@@ -1,0 +1,11 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}{{ article.name }}{% endblock %}
+
+{% block summary %} {% endblock %}
+
+{% block main %}
+    <main class="container-90tn-80md-70wd">
+        <p>{{ article.content }}</p>
+    </main>
+{% endblock %}
