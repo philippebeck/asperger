@@ -1,0 +1,50 @@
+{
+  "name": "philippebeck/asperger",
+  "version": "0.1.0",
+  "type": "project",
+  "description": "Blog about Asperger Syndrome",
+  "keywords": [
+    "asperger",
+    "autism spectrum disorders",
+    "blog",
+    "twig",
+    "animadio",
+    "animadio.js",
+    "pam",
+    "sql",
+    "git"
+  ],
+  "homepage": "https://asperger.philippebeck.net",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Philippe Beck",
+      "email": "philippe@philippebeck.net",
+      "homepage": "https://philippebeck.net",
+      "role": "Lead Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "require": {
+    "php": "7.3",
+    "devsagency/pam": "^4.6.0"
+  },
+  "require-dev": {
+    "tracy/tracy": "^2.7.6"
+  },
+  "config": {
+    "platform": {
+      "php": "7.3"
+    }
+  },
+  "support": {
+    "email": "admin@philippebeck.net",
+    "issues": "https://github.com/philippebeck/asperger/issues",
+    "wiki": "https://github.com/philippebeck/asperger/wiki",
+    "source": "https://github.com/philippebeck/asperger"
+  }
+}
