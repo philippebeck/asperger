@@ -1,0 +1,147 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block summary %}{% endblock %}
+
+{% block main %}
+    <input id="menu-radio1" class="menu-radio1" type="radio" name="menu" checked>
+    <input id="menu-radio2" class="menu-radio2" type="radio" name="menu">
+    <input id="menu-radio3" class="menu-radio3" type="radio" name="menu">
+
+    <nav class="menu">
+        <label class="button-red" for="menu-radio1" title="Show Articles">
+            <i class="fas fa-newspaper color-red-into"></i>
+            <span class="color-red-into">Articles</span>
+        </label>
+        <label class="button-green" for="menu-radio2" title="Show Resources">
+            <i class="fas fa-info-circle color-green-into"></i>
+            <span class="color-green-into">Resources</span>
+        </label>
+        <label class="button-blue" for="menu-radio3" title="Show Users">
+            <i class="fas fa-users color-blue-into"></i>
+            <span class="color-blue-into">Users</span>
+        </label>
+    </nav>
+
+    <main id="admin" class="menu-relay">
+        <section class="menu-target1">
+            <h2 class="deco-under color-red">
+                <i class="fas fa-newspaper"></i>
+                Articles
+            </h2>
+            <a class="btn-green btn-lg" href="{{ url('articles!create') }}">New Article</a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Article</th>
+                    <th>Content</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for article in allArticles %}
+                    <tr>
+                        <td>
+                            {{ article.name }}
+                            <hr>
+                            <i class="far fa-calendar-alt fa-lg"></i> {{ article.created_date }}
+                            <br>
+                            <i class="fas fa-calendar-alt fa-lg"></i> {{ article.updated_date }}
+                        </td>
+                        <td>{{ article.content }}</td>
+                        <td>
+                            <a class="btn-blue" href="{{ url('articles!update', {'id': article.id}) }}">
+                                <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                            </a>
+                            <a class="btn-red" href="{{ url('articles!delete', {'id': article.id}) }}">
+                                <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="menu-target2">
+            <h2 class="deco-under color-green">
+                <i class="fas fa-info-circle"></i>
+                Resources
+            </h2>
+            <a class="btn-green btn-lg" href="{{ url('resources!create') }}">New Resource</a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Resource</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for resource in allResources %}
+                    <tr>
+                        <td>
+                            <a class="button-purple" href="https://{{ resource.link }}" title="See https://{{ resource.link }}">
+                                {{ resource.name }}
+                            </a>
+                            <hr>
+                            {{ resource.category }}
+                        </td>
+                        <td>{{ resource.description }}</td>
+                        <td>
+                            <a class="btn-blue" href="{{ url('resources!update', {'id': resource.id}) }}">
+                                <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                            </a>
+                            <a class="btn-red" href="{{ url('resources!delete', {'id': resource.id}) }}">
+                                <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="menu-target3">
+            <h2 class="deco-under color-purple">
+                <i class="fas fa-users"></i>
+                Users
+            </h2>
+            <a class="btn-green btn-lg" href="{{ url('users!create') }}">New User</a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Infos</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in allUsers %}
+                    <tr>
+                        <td>
+                            <figure>
+                                <img class="bord-purple" src="img/users/{{ user.image }}" alt="Screenshot of {{ user.name }}">
+                                <figcaption>{{ user.name }}</figcaption>
+                            </figure>
+                        </td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            <a class="btn-orange" href="{{ url('auth!logout') }}" title="Logout">
+                                <i class="fas fa-sign-out-alt fa-fw fa-lg"></i>
+                            </a>
+                            <a class="btn-blue" href="{{ url('users!update', {'id': user.id}) }}">
+                                <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                            </a>
+                            <a class="btn-red" href="{{ url('users!delete', {'id': user.id}) }}">
+                                <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+{% endblock %}
