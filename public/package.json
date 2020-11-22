@@ -1,0 +1,30 @@
+{
+  "name": "asperger",
+  "description": "Blog about Asperger Syndrome",
+  "keywords": [
+    "asperger",
+    "autism spectrum disorders",
+    "blog",
+    "twig",
+    "animadio",
+    "animadio.js",
+    "pam",
+    "sql",
+    "git"
+  ],
+  "license": "MIT",
+  "main": "index.php",
+  "homepage": "https://asperger.philippebeck.net",
+  "repository": "github:philippebeck/asperger",
+  "bugs": "https://github.com/philippebeck/asperger/issues",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "animadio": "^3.0.0",
+    "animadio.js": "^0.1.18"
+  },
+  "author": {
+    "name": "Philippe Beck",
+    "email": "philippe@philippebeck.net",
+    "url": "https://philippebeck.net"
+  }
+}
