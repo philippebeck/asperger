@@ -1,0 +1,48 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Tests{% endblock %}
+
+{% block summary %}Test {{ test.category }} for Asperger Syndrome{% endblock %}
+
+{% block main %}
+    <main>
+        {% for category, testCategory in tests %}
+            <section>
+                <h2>{{ category|replace({'A': "Autistic", 'E': "Empathic", 'F': "Friendship", 'S': "Systematizing", 'Q': " Quotient"}) }}</h2>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Question</th>
+                        <th colspan="4">Answer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for test in testCategory %}
+                        <tr>
+                            <td>{{ test.id }}</td>
+                            <td>{{ test.question }}</td>
+                            <td>
+                                <label for="{{ category }}{{ test.id }}1">Definitely Agree</label><br>
+                                <input id="{{ category }}{{ test.id }}1" type="radio" name="{{ category }}{{ test.id }}" value="2">
+                            </td>
+                            <td>
+                                <label for="{{ category }}{{ test.id }}2">Slightly Agree</label><br>
+                                <input id="{{ category }}{{ test.id }}2" type="radio" name="{{ category }}{{ test.id }}" value="1">
+                            </td>
+                            <td>
+                                <label for="{{ category }}{{ test.id }}3">Slightly Disagree</label><br>
+                                <input id="{{ category }}{{ test.id }}3" type="radio" name="{{ category }}{{ test.id }}" value="-1">
+                            </td>
+                            <td>
+                                <label for="{{ category }}{{ test.id }}4">Definitely Disagree</label><br>
+                                <input id="{{ category }}{{ test.id }}4" type="radio" name="{{ category }}{{ test.id }}" value="-2">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        {% endfor %}
+    </main>
+{% endblock %}

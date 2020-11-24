@@ -8,6 +8,7 @@
     <input id="menu-radio1" class="menu-radio1" type="radio" name="menu" checked>
     <input id="menu-radio2" class="menu-radio2" type="radio" name="menu">
     <input id="menu-radio3" class="menu-radio3" type="radio" name="menu">
+    <input id="menu-radio4" class="menu-radio4" type="radio" name="menu">
 
     <nav class="menu">
         <label class="button-red" for="menu-radio1" title="Show Articles">
@@ -18,9 +19,13 @@
             <i class="fas fa-info-circle color-green-into"></i>
             <span class="color-green-into">Resources</span>
         </label>
-        <label class="button-blue" for="menu-radio3" title="Show Users">
-            <i class="fas fa-users color-blue-into"></i>
-            <span class="color-blue-into">Users</span>
+        <label class="button-blue" for="menu-radio3" title="Show Tests">
+            <i class="fas fa-question-circle color-blue-into"></i>
+            <span class="color-blue-into">Tests</span>
+        </label>
+        <label class="button-purple" for="menu-radio4" title="Show Users">
+            <i class="fas fa-users color-purple-into"></i>
+            <span class="color-purple-into">Users</span>
         </label>
     </nav>
 
@@ -104,6 +109,39 @@
         </section>
 
         <section class="menu-target3">
+            <h2 class="deco-under color-green">
+                <i class="fas fa-info-circle"></i>
+                Tests
+            </h2>
+            <a class="btn-green btn-lg" href="{{ url('tests!create') }}">New Test Question</a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Question</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for test in allTests %}
+                    <tr>
+                        <td>{{ test.category }}{{ test.id }}</td>
+                        <td>{{ test.question }}</td>
+                        <td>
+                            <a class="btn-blue" href="{{ url('tests!update', {'id': test.id}) }}">
+                                <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                            </a>
+                            <a class="btn-red" href="{{ url('tests!delete', {'id': test.id}) }}">
+                                <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="menu-target4">
             <h2 class="deco-under color-purple">
                 <i class="fas fa-users"></i>
                 Users
