@@ -28,11 +28,13 @@ class AdminController extends MainController
 
         $allArticles    = ModelFactory::getModel("Articles")->listData();
         $allResources   = ModelFactory::getModel("Resources")->listData();
+        $allTests       = ModelFactory::getModel("Tests")->listData();
         $allUsers       = ModelFactory::getModel("Users")->listData();
 
         return $this->render("back/admin.twig", [
             "allArticles"   => $allArticles,
             "allResources"  => $allResources,
+            "allTests"      => $allTests,
             "allUsers"      => $allUsers
         ]);
     }
