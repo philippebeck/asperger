@@ -60,9 +60,23 @@ class TestsController extends MainController
     public function readMethod()
     {
         $allTests   = $this->getArray()->getArrayElements(ModelFactory::getModel("Tests")->listData($this->getGet()->getGetVar("category")));
-        $tests      = $this->getArray()->getArrayElements($allTests[$this->getGet()->getGetVar("category")]);
+        $test       = $this->getArray()->getArrayElements($allTests[$this->getGet()->getGetVar("category")]);
 
-        return $this->render("front/tests/readTest.twig", ["tests" => $tests]);
+        if (!empty($this->getPost()->getPostArray())) {
+            $score = 0;
+
+            foreach ($this->getPost()->getPostArray() as $answer) {
+                $score += $answer;
+            }
+
+            return $this->render("front/tests/readTest.twig", [
+                "test" => $test,
+                "score" => $score
+            ]);
+        }
+
+        return $this->render("front/tests/readTest.twig", ["test" => $test]);
+
     }
 
     /**
