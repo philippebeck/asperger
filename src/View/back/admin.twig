@@ -110,23 +110,23 @@
 
         <section class="menu-target3">
             <h2 class="deco-under color-green">
-                <i class="fas fa-info-circle"></i>
+                <i class="fas fa-question-circle"></i>
                 Tests
             </h2>
             <a class="btn-green btn-lg" href="{{ url('tests!create') }}">New Test Question</a>
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Category</th>
                     <th>Question</th>
+                    <th>Infos</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for test in allTests %}
                     <tr>
-                        <td>{{ test.category }}{{ test.id }}</td>
                         <td>{{ test.question }}</td>
+                        <td>{{ test.category }}{{ test.number }}<hr>{{ test.answer }}</td>
                         <td>
                             <a class="btn-blue" href="{{ url('tests!update', {'id': test.id}) }}">
                                 <i class="fas fa-pen-square fa-fw fa-lg"></i>

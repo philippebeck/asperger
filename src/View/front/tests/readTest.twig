@@ -6,42 +6,42 @@
 
 {% block main %}
     <main>
-        {% for category, testCategory in tests %}
+        {% for category, testCategory in test %}
             <section>
-                <h2>{{ category|replace({'A': "Autistic", 'E': "Empathic", 'F': "Friendship", 'S': "Systematizing", 'Q': " Quotient"}) }}</h2>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Question</th>
-                        <th colspan="4">Answer</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for test in testCategory %}
-                        <tr>
-                            <td>{{ test.id }}</td>
-                            <td>{{ test.question }}</td>
-                            <td>
-                                <label for="{{ category }}{{ test.id }}1">Definitely Agree</label><br>
-                                <input id="{{ category }}{{ test.id }}1" type="radio" name="{{ category }}{{ test.id }}" value="2">
-                            </td>
-                            <td>
-                                <label for="{{ category }}{{ test.id }}2">Slightly Agree</label><br>
-                                <input id="{{ category }}{{ test.id }}2" type="radio" name="{{ category }}{{ test.id }}" value="1">
-                            </td>
-                            <td>
-                                <label for="{{ category }}{{ test.id }}3">Slightly Disagree</label><br>
-                                <input id="{{ category }}{{ test.id }}3" type="radio" name="{{ category }}{{ test.id }}" value="-1">
-                            </td>
-                            <td>
-                                <label for="{{ category }}{{ test.id }}4">Definitely Disagree</label><br>
-                                <input id="{{ category }}{{ test.id }}4" type="radio" name="{{ category }}{{ test.id }}" value="-2">
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                <h2>{{ category|replace({'A': "Autistic", 'E': "Empathic", 'S': "Systematizing", 'Q': " Quotient"}) }}</h2>
+
+                {% if not score %}
+                    <form method="post" action="{{ url('tests!read', {'category': category}) }}">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Question</th>
+                                <th>Answer</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for question in testCategory %}
+                                <tr>
+                                    <td>{{ question.number }}</td>
+                                    <td>
+                                        <label for="{{ category }}{{ question.number }}">{{ question.question }}</label>
+                                    </td>
+                                    <td>
+                                        <select id="{{ category }}{{ question.number }}" name="{{ category }}{{ question.number }}">
+                                            <option value="{% if question.answer is odd %}1{% else %}0{% endif %}">Agree</option>
+                                            <option value="{% if question.answer is even %}1{% else %}0{% endif %}">Disagree</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <input type="submit" value="Calculate !">
+                    </form>
+                {% else %}
+                    <p>Your score is {{ score }} !</p>
+                {% endif %}
             </section>
         {% endfor %}
     </main>
