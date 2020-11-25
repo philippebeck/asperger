@@ -6,7 +6,7 @@
 
 {% block main %}
     <main class="align-center">
-        <form class="form" method="post" action={{ url('tests!create') }}>
+        <form class="form" method="post" action="{{ url('tests!create') }}">
             <fieldset>
                 <legend>
                     <i class="fas fa-question-circle fa-2x"></i>
@@ -17,8 +17,16 @@
                         <input id="category" name="category" type="text" maxlength="2" required placeholder="Type the Test Category">
                     </li>
                     <li>
+                        <label for="number">Number*</label>
+                        <input id="number" name="number" type="number" maxlength="2" min="1" max="100" required placeholder="Type the Question Number">
+                    </li>
+                    <li>
+                        <label for="answer">Answer*</label>
+                        <input id="answer" name="answer" type="number" min="0" max="1" required placeholder="Type the Question Answer">
+                    </li>
+                    <li>
                         <label for="question">Question*</label>
-                        <input id="question" name="question" type="text" maxlength="100" required placeholder="Type the Test Question">
+                        <input id="question" name="question" type="text" maxlength="120" required placeholder="Type the Test Question">
                     </li>
                 </ul>
                 <ul>
