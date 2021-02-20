@@ -20,21 +20,27 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('articles') }}" accesskey="a" title="Asperger Articles">
-                <i class="fas fa-newspaper fa-lg"></i>
-                <span>Articles</span>
+            <a href="{{ url('tests!read', {'category': 'AQ'}) }}" accesskey="a" title="Quotient Autistique">
+                <i class="fas fa-user-astronaut fa-lg"></i>
+                <span>AQ</span>
             </a>
         </li>
         <li>
-            <a href="{{ url('resources') }}" accesskey="r" title="Asperger Resources">
-                <i class="fas fa-info-circle fa-lg"></i>
-                <span>Resources</span>
+            <a href="{{ url('tests!read', {'category': 'EQ'}) }}" accesskey="e" title="Quotient Empathique">
+                <i class="fas fa-user-nurse fa-lg"></i>
+                <span>EQ</span>
             </a>
         </li>
         <li>
-            <a href="{{ url('tests') }}" accesskey="t" title="Asperger Tests">
-                <i class="fas fa-question-circle fa-lg"></i>
-                <span>Tests</span>
+            <a href="{{ url('tests!read', {'category': 'FQ'}) }}" accesskey="f" title="Quotient Amitié & Relation">
+                <i class="fas fa-users fa-lg"></i>
+                <span>FQ</span>
+            </a>
+        </li>
+                <li>
+            <a href="{{ url('tests!read', {'category': 'SQ'}) }}" accesskey="s" title="Quotient Méthodique Révisé">
+                <i class="fas fa-user-cog fa-lg"></i>
+                <span>SQ-R</span>
             </a>
         </li>
     </ul>
