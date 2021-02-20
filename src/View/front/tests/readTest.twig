@@ -1,14 +1,14 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Tests{% endblock %}
+{% block title %}Test {{ test.category }}{% endblock %}
 
-{% block summary %}Test {{ test.category }} for Asperger Syndrome{% endblock %}
+{% block summary %}Test {{ test.category }} pour le Syndrome d'Asperger{% endblock %}
 
 {% block main %}
     <main>
         {% for category, testCategory in test %}
             <section>
-                <h2>{{ category|replace({'A': "Autistic", 'E': "Empathic", 'S': "Systematizing", 'Q': " Quotient"}) }}</h2>
+                <h2>Quotient {{ category|replace({'AQ': "Autistique", 'EQ': "Empathique", 'SQ': "Méthodique"}) }}</h2>
 
                 {% if not score %}
                     <form method="post" action="{{ url('tests!read', {'category': category}) }}">
@@ -17,7 +17,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Question</th>
-                                <th>Answer</th>
+                                <th>Réponse</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -29,8 +29,8 @@
                                     </td>
                                     <td>
                                         <select id="{{ category }}{{ question.number }}" name="{{ category }}{{ question.number }}">
-                                            <option value="{% if question.answer is odd %}1{% else %}0{% endif %}">Agree</option>
-                                            <option value="{% if question.answer is even %}1{% else %}0{% endif %}">Disagree</option>
+                                            <option value="{% if question.answer is odd %}1{% else %}0{% endif %}">D'accord</option>
+                                            <option value="{% if question.answer is even %}1{% else %}0{% endif %}">Pas d'accord</option>
                                         </select>
                                     </td>
                                 </tr>
