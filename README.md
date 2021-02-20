@@ -1,6 +1,6 @@
 # Asperger
 
-Blog about Asperger Syndrome
+Tests for Asperger Syndrome
 
 ---
 
@@ -14,7 +14,7 @@ Blog about Asperger Syndrome
 
 ## Support
 
-Asperger has no continuous support !
+Asperger has continuous support !
 
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/philippebeck/asperger.svg?label=Last+Commit)](https://github.com/philippebeck/asperger/commits/master)
 
