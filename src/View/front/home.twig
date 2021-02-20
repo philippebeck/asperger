@@ -1,27 +1,36 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Asperger Blog{% endblock %}
+{% block title %}Tests du Syndrome d'Asperger{% endblock %}
 
-{% block description %}Welcome page about Asperger Syndrome{% endblock %}
+{% block description %}{% endblock %}
 
 {% block main %}
     <main>
-        <p>This Asperger Syndrome blog was created to help people understand what Asperger Syndrome is !</p>
+        <p></p>
 
         <ul class="row">
             <li>
-                <a class="btn-red btn-circle" href="{{ url('articles') }}" accesskey="a" title="Asperger Articles">
-                    <i class="fas fa-newspaper fa-2x"></i> Articles
+                <a class="btn-red btn-circle pad-md" href="{{ url('tests!read', {'category': 'AQ'}) }}" accesskey="a" title="Quotient Autistique">
+                    <i class="fas fa-user-astronaut fa-3x"></i>
+                    <span>Quotient Autistique</span>
                 </a>
             </li>
             <li>
-                <a class="btn-green btn-circle" href="{{ url('resources') }}" accesskey="r" title="Asperger Resources">
-                    <i class="fas fa-info-circle fa-2x"></i> Resources
+                <a class="btn-green btn-circle pad-md" href="{{ url('tests!read', {'category': 'EQ'}) }}" accesskey="e" title="Quotient Empathique">
+                    <i class="fas fa-user-nurse fa-3x"></i>
+                    <span>Quotient Empathique</span>
                 </a>
             </li>
             <li>
-                <a class="btn-blue btn-circle" href="{{ url('tests') }}" accesskey="t" title="Asperger Tests">
-                    <i class="fas fa-question-circle fa-2x"></i> Tests
+                <a class="btn-blue btn-circle pad-md" href="{{ url('tests!read', {'category': 'FQ'}) }}" accesskey="f" title="Quotient Amitié & Relation">
+                    <i class="fas fa-users fa-3x"></i>
+                    <span>Quotient Amitié & Relation</span>
+                </a>
+            </li>
+                    <li>
+                <a class="btn-purple btn-circle pad-md" href="{{ url('tests!read', {'category': 'SQ'}) }}" accesskey="s" title="Quotient Méthodique Révisé">
+                    <i class="fas fa-user-cog fa-3x"></i>
+                    <span>Quotient Méthodique Révisé</span>
                 </a>
             </li>
         </ul>
