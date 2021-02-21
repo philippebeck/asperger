@@ -1,38 +1,56 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Tests du Syndrome d'Asperger{% endblock %}
+{% block title %}Syndrome d'Asperger{% endblock %}
 
-{% block description %}{% endblock %}
+{% block description %}Tests en ligne pour le syndrome d'Asperger{% endblock %}
 
 {% block main %}
     <main>
-        <p></p>
+        <section>
+            <h2>Tests en ligne</h2>
+        
+            <ul class="row">
+                <li>
+                    <a class="btn-red btn-circle pad-md" href="{{ url('test', {'category': 'AQ'}) }}" accesskey="a" title="Quotient Autistique">
+                        <i class="fas fa-user-astronaut fa-3x"></i>
+                        <span>Quotient Autistique</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btn-green btn-circle pad-md" href="{{ url('test', {'category': 'EQ'}) }}" accesskey="e" title="Quotient Empathique">
+                        <i class="fas fa-user-nurse fa-3x"></i>
+                        <span>Quotient Empathique</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btn-blue btn-circle pad-md" href="{{ url('test', {'category': 'FQ'}) }}" accesskey="f" title="Quotient Amitié & Relation">
+                        <i class="fas fa-users fa-3x"></i>
+                        <span>Quotient Amitié & Relation</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btn-purple btn-circle pad-md" href="{{ url('test', {'category': 'SQ'}) }}" accesskey="s" title="Quotient Méthodique Révisé">
+                        <i class="fas fa-user-cog fa-3x"></i>
+                        <span>Quotient Méthodique Révisé</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
 
-        <ul class="row">
-            <li>
-                <a class="btn-red btn-circle pad-md" href="{{ url('tests!read', {'category': 'AQ'}) }}" accesskey="a" title="Quotient Autistique">
-                    <i class="fas fa-user-astronaut fa-3x"></i>
-                    <span>Quotient Autistique</span>
-                </a>
-            </li>
-            <li>
-                <a class="btn-green btn-circle pad-md" href="{{ url('tests!read', {'category': 'EQ'}) }}" accesskey="e" title="Quotient Empathique">
-                    <i class="fas fa-user-nurse fa-3x"></i>
-                    <span>Quotient Empathique</span>
-                </a>
-            </li>
-            <li>
-                <a class="btn-blue btn-circle pad-md" href="{{ url('tests!read', {'category': 'FQ'}) }}" accesskey="f" title="Quotient Amitié & Relation">
-                    <i class="fas fa-users fa-3x"></i>
-                    <span>Quotient Amitié & Relation</span>
-                </a>
-            </li>
-                    <li>
-                <a class="btn-purple btn-circle pad-md" href="{{ url('tests!read', {'category': 'SQ'}) }}" accesskey="s" title="Quotient Méthodique Révisé">
-                    <i class="fas fa-user-cog fa-3x"></i>
-                    <span>Quotient Méthodique Révisé</span>
-                </a>
-            </li>
-        </ul>
+        <section>
+            <h2>Quelques ouvrages</h2>
+
+            <ul>
+                <li>
+                    <a class="button" href="https://books.google.fr/books?id=NcNwDwAAQBAJ" title="Voir le e-book sur Google Books">Le Syndrome d'Asperger</a>
+                </li>
+                <li>
+                    <a class="button" href="https://books.google.fr/books?id=xggBEAAAQBAJ" title="Voir le e-book sur Google Books">Asperger : comment vaincre couprs de blues & dépression ?</a>
+                </li>
+                <li>
+                    <a class="button" href="https://books.google.fr/books?id=3XvQDwAAQBAJ" title="Voir le e-book sur Google Books">Sexualité & Syndrome d'Asperger</a>
+                </li>
+            </ul>
+        </section>
     </main>
 {% endblock %}
