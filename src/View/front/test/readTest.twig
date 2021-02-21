@@ -1,0 +1,46 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Test {{ test.category }}{% endblock %}
+
+{% block summary %}Test {{ test.category }} pour le Syndrome d'Asperger{% endblock %}
+
+{% block main %}
+    <main>
+        <section>
+            <h2>Quotient {{ info.category|replace({'AQ': "Autistique", 'EQ': "Empathique", 'FQ': "Amitié & Relation", 'SQ': "Méthodique Révisé"}) }}</h2>
+
+            {% if not score %}
+                <form method="post" action="{{ url('test!read', {'category': info.category}) }}">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Question</th>
+                            <th>Réponse</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for question in test %}
+                            <tr>
+                                <td>{{ question.id }}</td>
+                                <td>
+                                    <label for="{{ question.id }}">{{ question.question }}</label>
+                                </td>
+                                <td>
+                                    <select id="{{ question.id }}" name="{{ question.id }}">
+                                        <option value="{% if question.answer is odd %}1{% else %}0{% endif %}">D'accord</option>
+                                        <option value="{% if question.answer is even %}1{% else %}0{% endif %}">Pas d'accord</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <input type="submit" value="Calculate !">
+                </form>
+            {% else %}
+                <p>Your score is {{ score }} !</p>
+            {% endif %}
+        </section>
+    </main>
+{% endblock %}

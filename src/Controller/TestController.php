@@ -9,10 +9,10 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 /**
- * Class TestsController
+ * Class TestController
  * @package App\Controller
  */
-class TestsController extends MainController
+class TestController extends MainController
 {
     /**
      * @return string
@@ -59,24 +59,23 @@ class TestsController extends MainController
      */
     public function readMethod()
     {
-        $allTests   = $this->getArray()->getArrayElements(ModelFactory::getModel("Tests")->listData($this->getGet()->getGetVar("category")));
-        $test       = $this->getArray()->getArrayElements($allTests[$this->getGet()->getGetVar("category")]);
-
-        if (!empty($this->getPost()->getPostArray())) {
-            $score = 0;
-
-            foreach ($this->getPost()->getPostArray() as $answer) {
-                $score += $answer;
-            }
-
-            return $this->render("front/tests/readTest.twig", [
-                "test" => $test,
-                "score" => $score
+        if (empty($this->getPost()->getPostArray())) {
+            $info   = ModelFactory::getModel("Test")->readData($this->getGet()->getGetVar("category"), "category");
+            $test   = ModelFactory::getModel($this->getGet()->getGetVar("category"))->listData();
+    
+            return $this->render("front/test/readTest.twig", [
+                "info" => $info,
+                "test" => $test
             ]);
         }
+        
+        $score = 0;
 
-        return $this->render("front/tests/readTest.twig", ["test" => $test]);
+        foreach ($this->getPost()->getPostArray() as $answer) {
+            $score += $answer;
+        }
 
+        return $this->render("front/test/readTest.twig", ["score" => $score]);
     }
 
     /**
