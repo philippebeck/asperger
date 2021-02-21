@@ -3,14 +3,6 @@ CREATE DATABASE `asperger` CHARACTER SET utf8;
 
 USE `asperger`;
 
-CREATE TABLE `User` (
-  `id`    TINYINT         UNSIGNED    PRIMARY KEY AUTO_INCREMENT,
-  `name`  VARCHAR(50)     NOT NULL,
-  `image` VARCHAR(50)     UNIQUE,
-  `email` VARCHAR(100)    NOT NULL    UNIQUE,
-  `pass`  VARCHAR(100)    NOT NULL
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
-
 CREATE TABLE `Test` (
   `id`                  TINYINT     UNSIGNED  PRIMARY KEY AUTO_INCREMENT,
   `category`            CHAR(2)     NOT NULL  UNIQUE,
