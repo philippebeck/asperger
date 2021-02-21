@@ -9,10 +9,10 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 /**
- * Class UsersController
+ * Class UserController
  * @package App\Controller
  */
-class UsersController extends MainController
+class UserController extends MainController
 {
     /**
      * @var array
