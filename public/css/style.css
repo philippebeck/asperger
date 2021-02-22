@@ -4,10 +4,10 @@
   --monospace-font-family: 'Share Tech Mono', monospace;
 }
 
-body {
-  --body-background-color: var(--sky-light);
+.navbar {
+  --navbar-background-color: var(--navy-light);
 }
 
-.navbar {
-  --navbar-background-color: var(--blue-dark);
+.foot {
+  --foot-list-background-color: var(--purple-dark);
 }
