@@ -23,35 +23,39 @@ CREATE TABLE `Test` (
 CREATE TABLE `AQ` (
   `id`          TINYINT       UNSIGNED    PRIMARY KEY AUTO_INCREMENT,
   `answer`      TINYINT(1)    NOT NULL,
-  `question`    VARCHAR(120)  NOT NULL    UNIQUE
+  `question`    VARCHAR(200)  NOT NULL    UNIQUE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `EQ` (
   `id`          TINYINT       UNSIGNED    PRIMARY KEY AUTO_INCREMENT,
   `answer`      TINYINT(1)    NOT NULL,
-  `question`    VARCHAR(120)  NOT NULL    UNIQUE
-)
-    ENGINE=INNODB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `FQ` (
-  `id`          TINYINT       UNSIGNED    PRIMARY KEY AUTO_INCREMENT,
-  `answer`      TINYINT(1)    NOT NULL,
-  `question`    VARCHAR(120)  NOT NULL    UNIQUE
-)
-    ENGINE=INNODB DEFAULT CHARSET=utf8;
+  `question`    VARCHAR(200)  NOT NULL    UNIQUE
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `SQ` (
   `id`          TINYINT       UNSIGNED    PRIMARY KEY AUTO_INCREMENT,
   `answer`      TINYINT(1)    NOT NULL,
-  `question`    VARCHAR(120)  NOT NULL    UNIQUE
-)
-    ENGINE=INNODB DEFAULT CHARSET=utf8;
+  `question`    VARCHAR(200)  NOT NULL    UNIQUE
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `FQ` (
+  `id`          TINYINT       UNSIGNED    PRIMARY KEY AUTO_INCREMENT,
+  `question`    VARCHAR(200),
+  `answer_1`    VARCHAR(200),
+  `answer_2`    VARCHAR(200),
+  `answer_3`    VARCHAR(200),
+  `answer_4`    VARCHAR(200),
+  `answer_5`    VARCHAR(200),
+  `answer_6`    VARCHAR(200),
+  `answer_7`    VARCHAR(200),
+  `answer_8`    VARCHAR(200)
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 INSERT INTO `Test` (`category`, `score_type`, `value_max`, `asperger_min`, `asperger_max`, `man_min`, `man_max`, `woman_min`, `woman_max`, `author`, `year`, `translation_author`, `translation_year`) VALUES
 ('AQ', '(fort) = (faible)', 50, 31, 45, 12, 26, 11, 23, 'Baron-Cohen, Wheelwright, Skinner, Martin & Clubey', 2001, 'Braun & Kempenaers', 2007),
 ('EQ', '(fort) = 2*(faible)', 80, 9, 33, 26, 51, 37, 59, 'Baron-Cohen & Wheelwright', 2004, 'Besche-Richard, Olivier & Albert', 2006),
 ('FQ', '', 135, 35, 78, 55, 86, 74, 106, 'Baron-Cohen & Wheelwright', 2003, 'Beck', 2021),
-('SQ', '(fort) = 2*(faible)', 150, 50, 120, 35, 80, 25, 70, 'Baron-Cohen, Wheelwright, Skinner, Martin and Clubey', 2003, 'Braun & Kempenaers', 2007);
+('SQ', '(fort) = 2*(faible)', 150, 50, 120, 35, 80, 25, 70, 'Baron-Cohen, Wheelwright, Skinner, Martin & Clubey', 2003, 'Braun & Kempenaers', 2007);
 
 INSERT INTO `AQ` (`answer`, `question`) VALUES
 (0, 'Je préfère réaliser des activités avec d’autres personnes plutôt que seul(e).'),
@@ -94,7 +98,7 @@ INSERT INTO `AQ` (`answer`, `question`) VALUES
 (0, 'Je suis doué(e) pour le bavardage en société.'),
 (1, 'Les gens me disent souvent que répète continuellement les mêmes choses.'),
 (0, 'Quand j’étais enfant, j’aimais habituellement jouer à des jeux de rôle avec les autres.'),
-(1, 'J’aime collectionner des informations sur des catégories de choses (types de voitures, d’oiseaux, de trains, de plantes, ...).'),
+(1, 'J’aime collectionner des informations sur des catégories de choses (types de voitures, d’oiseaux, de trains, de plantes...).'),
 (1, 'Je trouve qu’il est difficile de s’imaginer dans la peau d’un autre.'),
 (1, 'J’aime planifier avec soin toute activité à laquelle je participe.'),
 (0, 'J’aime les événements sociaux.'),
@@ -223,3 +227,40 @@ INSERT INTO `SQ` (`answer`, `question`) VALUES
 (0, 'Quand je cuisine, je ne pense pas exactement à la manière dont les différents ingrédients et tâches contribuent au produit final.'),
 (1, 'Quand j’écoute un morceau de musique, je remarque toujours la manière dont il est structuré.'),
 (1, 'Je pourrais produire la liste de mes 10 chansons favorites de mémoire, en donnant le titre et le nom des artistes qui ont réalisé chaque chanson.');
+
+INSERT INTO `FQ` (`question`, `answer_1`, `answer_2`, `answer_3`, `answer_4`, `answer_5`, `answer_6`, `answer_7`, `answer_8`) VALUES
+('', 'J’ai un ou deux meilleurs amis.', 'J’ai plusieurs amis que j’appellerais mes meilleurs amis.', 'Je n’ai personne que j’appellerais un meilleur ami.', '', '', '', '', ''),
+('', 'La chose la plus importante dans une amitié est d’avoir quelqu’un à qui se confier.', 'La chose la plus importante dans une amitié est d’avoir quelqu’un avec qui s’amuser.', '', '', '', '', '', ''),
+('', 'Si je devais choisir, je préférerais avoir un ami qui aime faire les mêmes choses que moi qu’un ami qui ressent la même chose que moi dans la vie.', 'Si je devais choisir, je préférerais avoir un ami qui ressent la même chose que moi dans la vie, qu’un ami qui aime faire les mêmes choses que moi.', '', '', '', '', '', ''),
+('', 'J’aime être proche des gens.', 'J’aime garder mes distances avec les gens.', '', '', '', '', '', ''),
+('', 'Lorsque je parle au téléphone avec des amis, c’est généralement pour prendre des dispositions plutôt que pour discuter.', 'Lorsque je parle avec des amis au téléphone, c’est généralement pour discuter plutôt que pour prendre des dispositions.', '', '', '', '', '', ''),
+('', 'J’ai tendance à penser à une activité que je veux faire et à trouver ensuite quelqu’un avec qui la faire.', 'J’ai tendance à m’arranger pour rencontrer quelqu’un et à penser ensuite à quelque chose à faire.', '', '', '', '', '', ''),
+('', 'Je préfère rencontrer un ami pour une activité spécifique, par exemple aller au cinéma, jouer au golf.', 'Je préfère rencontrer un ami pour discuter, par exemple dans un pub, dans un café.', '', '', '', '', '', ''),
+('', 'Si je déménageais dans une nouvelle région, je ferais plus d’efforts pour rester en contact avec de vieux amis que pour me faire de nouveaux amis.', 'Si je déménageais dans une nouvelle région, je mettrais plus d’efforts à me faire de nouveaux amis qu’à rester en contact avec de vieux amis.', '', '', '', '', '', ''),
+('', 'Mes amis me valorisent plus comme quelqu’un qui les soutient que comme quelqu’un avec qui s’amuser.', 'Mes amis me valorisent plus comme quelqu’un avec qui s’amuser que comme quelqu’un qui les soutient.', '', '', '', '', '', ''),
+('', 'Si un ami avait un problème, je ferais mieux de discuter de ses sentiments à propos du problème que de trouver des solutions pratiques.', 'Si un ami avait un problème, je ferais mieux de trouver des solutions pratiques que de discuter de ses sentiments à propos du problème.', '', '', '', '', '', ''),
+('', 'Si un ami avait des problèmes personnels, j’attendrais qu’il me contacte car je ne voudrais pas interférer.', 'Si un ami avait des problèmes personnels, je le contacterais pour discuter du problème.', '', '', '', '', '', ''),
+('', 'Quand j’ai un problème personnel, je pense qu’il vaut mieux le résoudre moi-même.', 'Quand j’ai un problème personnel, je pense qu’il vaut mieux le partager avec un ami.', 'Quand j’ai un problème personnel, je pense qu’il vaut mieux essayer de l’oublier.', '', '', '', '', ''),
+('', 'Si je dois dire quelque chose de critique à un ami, je pense qu’il vaut mieux aborder le sujet avec douceur.', 'Si je dois dire quelque chose de critique à un ami, je pense qu’il est préférable de sortir et de le dire.', '', '', '', '', '', ''),
+('Si je me suis brouillé avec un bon ami et que je pensais que je n’avais rien fait de mal', 'Je ferais tout ce qu’il faut pour réparer la relation.', 'Je serais prêt à faire le premier pas, à condition qu’ils me rendent la pareille.', 'Je serais prêt à régler le problème, s’ils faisaient le premier pas.', 'Je ne me sentirais plus capable d’être leur ami proche.', '', '', '', ''),
+('Mon espace de travail idéal serait', 'dans un bureau seul, sans aucun visiteur pendant la journée.', 'dans un bureau seul, avec un visiteur occasionnel pendant la journée.', 'dans un bureau avec un ou deux autres.', 'dans un bureau à aire ouverte.', '', '', '', ''),
+('Est-ce que vous trouvez facile de discuter de vos sentiments avec vos amis ?', 'Très facile', 'Assez facile', 'Pas très facile', 'Assez difficile', 'Très difficile', '', '', ''),
+('Dans quelle mesure trouveriez-vous facile de discuter de vos sentiments avec un étranger ?', 'Très facile', 'Assez facile', 'Pas très facile', 'Assez difficile', 'Très difficile', '', '', ''),
+('En termes de personnalité, dans quelle mesure avez-vous tendance à ressembler à vos amis ?', 'Très similaire', 'Assez similaire', 'Pas très similaire', 'Très dissemblable', '', '', '', ''),
+('En termes d’intérêts, dans quelle mesure avez-vous tendance à ressembler à vos amis ?', 'Très similaire', 'Assez similaire', 'Pas très similaire', 'Très dissemblable', '', '', '', ''),
+('À quel point est-ce important pour vous ce que vos amis pensent de vous ?', 'Sans importance', 'De peu d’importance', 'Assez important', 'Très important', 'De la plus haute importance', '', '', ''),
+('Quelle importance accordez-vous à ce que les étrangers pensent de vous ?', 'Sans importance', 'De peu d’importance', 'Assez important', 'Très important', 'De la plus haute importance', '', '', ''),
+('Est-ce que vous trouvez facile d’admettre à vos amis quand vous vous trompez ?', 'Très facile', 'Assez facile', 'Pas très facile', 'Assez difficile', 'Très difficile', '', '', ''),
+('Trouvez-vous facile de parler à un ami de vos faiblesses et de vos échecs ?', 'Très facile', 'Assez facile', 'Pas très facile', 'Assez difficile', 'Très difficile', '', '', ''),
+('Trouvez-vous facile de parler à un ami de vos réalisations et de vos succès ?', 'Très facile', 'Assez facile', 'Pas très facile', 'Assez difficile', 'Très difficile', '', '', ''),
+('Dans quelle mesure êtes-vous intéressé par les détails quotidiens (par exemple, leurs relations, leur famille, ce qui se passe actuellement dans leur vie) de la vie de vos amis proches ?', 'Complètement désintéressé', 'Pas très intéressé', 'Assez intéressé', 'Très intéressé', '', '', '', ''),
+('Dans quelle mesure êtes-vous intéressé par les détails quotidiens (par exemple, leurs relations, leur famille, ce qui se passe actuellement dans leur vie) de la vie de vos amis occasionnels ?', 'Complètement désintéressé', 'Pas très intéressé', 'Assez intéressé', 'Très intéressé', '', '', '', ''),
+('Lorsque vous êtes dans un groupe, par ex. au travail, à l’école, à l’église, dans un groupe de parents, etc., dans quelle mesure est-il important pour vous de connaître les «potins», par ex. qui n’aime pas qui, qui a eu une relation avec qui, des secrets.', 'Sans importance', 'De peu d’importance', 'Assez important', 'Très important', 'De la plus haute importance', '', '', ''),
+('Travaillez-vous plus dur à votre carrière qu’au maintien de vos relations avec vos amis ?', 'Oui', 'Non', 'Egal', '', '', '', '', ''),
+('À quelle fréquence prévoyez-vous de rencontrer des amis ?', 'Une ou deux fois par an', 'Une fois tous les 2 ou 3 mois', 'Une fois par mois', 'Une fois toutes les deux semaines', 'Une fois ou deux fois par semaine', '3 ou 4 fois par semaine', 'Plus que tout ce qui précède', ''),
+('', '', '', '', '', '', '', '', ''),
+('', '', '', '', '', '', '', '', ''),
+('', '', '', '', '', '', '', '', ''),
+('', '', '', '', '', '', '', '', ''),
+('', '', '', '', '', '', '', '', ''),
+('', '', '', '', '', '', '', '', '');
