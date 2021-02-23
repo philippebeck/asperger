@@ -26,8 +26,16 @@ class TestController extends MainController
 
         if (empty($this->getPost()->getPostArray())) {
             $test = ModelFactory::getModel($this->getGet()->getGetVar("category"))->listData();
+
+            if ($this->getGet()->getGetVar("category") === "FQ") {
+
+                return $this->render("front/specialTest.twig", [
+                    "info" => $info,
+                    "test" => $test
+                ]);
+            }
     
-            return $this->render("front/test.twig", [
+            return $this->render("front/mainTest.twig", [
                 "info" => $info,
                 "test" => $test
             ]);
@@ -39,7 +47,15 @@ class TestController extends MainController
             $score += $answer;
         }
 
-        return $this->render("front/test.twig", [
+        if ($this->getGet()->getGetVar("category") === "FQ") {
+
+            return $this->render("front/specialTest.twig", [
+                "info" => $info,
+                "score" => $score
+            ]);
+        }
+
+        return $this->render("front/mainTest.twig", [
                 "info"  => $info,
                 "score" => $score
             ]);

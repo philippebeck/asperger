@@ -2,36 +2,52 @@
 
 {% block title %}Syndrome d'Asperger{% endblock %}
 
-{% block description %}Tests en ligne pour le syndrome d'Asperger{% endblock %}
+{% block description %}Tests en ligne pour le Syndrome d'Asperger{% endblock %}
 
 {% block main %}
     <main>
+    <header>
+        <p>
+            Ce site permet de passer différents tests afin d'aider un spécialiste à établir un diagnostique du 
+            <a class="button-navy cursor-help" href="https://fr.wikipedia.org/wiki/Syndrome_d%27Asperger" title="Voir la page Wikipedia du Syndrome d'Asperger">
+                <strong>Syndrome d'Asperger</strong>
+            </a>
+        </p>
+        <p>
+            Les contenus textuels de ces tests proviennent du
+            <a class="button-navy cursor-help" href="http://www.autismresearchcentre.com/tests" title="Voir la liste des tests du Centre de Recherche sur l'Autisme">
+                <strong>Centre de Recherche sur l'Autisme</strong>
+            </a>
+            de l'Université de Cambridge
+        </p>
+    </header>
+
         <section>
             <h2>Tests en ligne</h2>
         
-            <ul class="row">
+            <ul class="row anima-full3D-global">
                 <li>
-                    <a class="btn-red btn-circle pad-md" href="{{ url('test', {'category': 'AQ'}) }}" accesskey="a" title="Quotient Autistique">
+                    <a class="button-red btn-circle pad-md" href="{{ url('test', {'category': 'AQ'}) }}" accesskey="a" title="Quotient Autistique">
                         <i class="fas fa-user-astronaut fa-3x"></i>
-                        <span>Quotient Autistique</span>
+                        <strong>Quotient Autistique</strong>
                     </a>
                 </li>
                 <li>
-                    <a class="btn-green btn-circle pad-md" href="{{ url('test', {'category': 'EQ'}) }}" accesskey="e" title="Quotient Empathique">
+                    <a class="button-green btn-circle pad-md" href="{{ url('test', {'category': 'EQ'}) }}" accesskey="e" title="Quotient Empathique">
                         <i class="fas fa-user-nurse fa-3x"></i>
-                        <span>Quotient Empathique</span>
+                        <strong>Quotient Empathique</strong>
                     </a>
                 </li>
                 <li>
-                    <a class="btn-blue btn-circle pad-md" href="{{ url('test', {'category': 'FQ'}) }}" accesskey="f" title="Quotient Amitié & Relation">
+                    <a class="button-blue btn-circle pad-md" href="{{ url('test', {'category': 'FQ'}) }}" accesskey="f" title="Quotient Amitié & Relation">
                         <i class="fas fa-users fa-3x"></i>
-                        <span>Quotient Amitié & Relation</span>
+                        <strong>Quotient Amitié & Relation</strong>
                     </a>
                 </li>
                 <li>
-                    <a class="btn-purple btn-circle pad-md" href="{{ url('test', {'category': 'SQ'}) }}" accesskey="s" title="Quotient Méthodique Révisé">
+                    <a class="button-purple btn-circle pad-md" href="{{ url('test', {'category': 'SQ'}) }}" accesskey="s" title="Quotient Méthodique Révisé">
                         <i class="fas fa-user-cog fa-3x"></i>
-                        <span>Quotient Méthodique Révisé</span>
+                        <strong>Quotient Méthodique Révisé</strong>
                     </a>
                 </li>
             </ul>
@@ -42,13 +58,19 @@
 
             <ul>
                 <li>
-                    <a class="button" href="https://books.google.fr/books?id=NcNwDwAAQBAJ" title="Voir le e-book sur Google Books">Le Syndrome d'Asperger</a>
+                    <a class="button cursor-help anima-shrink-onto" href="https://books.google.fr/books?id=NcNwDwAAQBAJ" title="Voir le e-book sur Google Books">
+                        <em>Le Syndrome d'Asperger</em>
+                    </a>
                 </li>
                 <li>
-                    <a class="button" href="https://books.google.fr/books?id=xggBEAAAQBAJ" title="Voir le e-book sur Google Books">Asperger : comment vaincre couprs de blues & dépression ?</a>
+                    <a class="button cursor-help anima-shrink-onto" href="https://books.google.fr/books?id=xggBEAAAQBAJ" title="Voir le e-book sur Google Books">
+                        <em>Asperger : comment vaincre coups de blues & dépression ?</em>
+                    </a>
                 </li>
                 <li>
-                    <a class="button" href="https://books.google.fr/books?id=3XvQDwAAQBAJ" title="Voir le e-book sur Google Books">Sexualité & Syndrome d'Asperger</a>
+                    <a class="button cursor-help anima-shrink-onto" href="https://books.google.fr/books?id=3XvQDwAAQBAJ" title="Voir le e-book sur Google Books">
+                        <em>Sexualité & Syndrome d'Asperger</em>
+                    </a>
                 </li>
             </ul>
         </section>
