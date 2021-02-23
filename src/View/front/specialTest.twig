@@ -1,0 +1,62 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Test {{ info.category }}{% endblock %}
+
+{% block summary %}Test {{ info.category }} pour le Syndrome d'Asperger{% endblock %}
+
+{% block main %}
+    <main>
+        <section>
+            <h2>Quotient {{ info.category|replace({'AQ': "Autistique", 'EQ': "Empathique", 'FQ': "Amitié & Relation", 'SQ': "Méthodique Révisé"}) }}</h2>
+
+            {% if not score %}
+                <form method="post" action="{{ url('test!read', {'category': info.category}) }}">
+                    <table class="table">
+                    {% for question in test %}
+                        <tr>
+                            <td>
+                                <label for="{{ question.id }}">{{ question.id }}. {{ question.question }}</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="{{ question.id }}" name="{{ question.id }}">
+                                    <option value={{ question.value_1 }}>{{ question.answer_1 }}</option>
+                                    <option value={{ question.value_2 }}>{{ question.answer_2 }}</option>
+
+                                {% if question.answers > 2 %}
+                                    <option value={{ question.value_3 }}>{{ question.answer_3 }}</option>
+                                {% endif %}
+
+                                {% if question.answers > 3 %}
+                                    <option value={{ question.value_4 }}>{{ question.answer_4 }}</option>
+                                {% endif %}
+
+                                {% if question.answers > 4 %}
+                                    <option value={{ question.value_5 }}>{{ question.answer_5 }}</option>
+                                {% endif %}
+
+                                {% if question.answers > 5 %}
+                                    <option value={{ question.value_6 }}>{{ question.answer_6 }}</option>
+                                {% endif %}
+
+                                {% if question.answers > 6 %}
+                                    <option value={{ question.value_7 }}>{{ question.answer_7 }}</option>
+                                {% endif %}
+
+                                {% if question.answers > 7 %}
+                                    <option value={{ question.value_8 }}>{{ question.answer_8 }}</option>
+                                {% endif %}
+                                </select>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                    <input type="submit" value="Calculate !">
+                </form>
+            {% else %}
+                <p>Your score is {{ score }} !</p>
+            {% endif %}
+        </section>
+    </main>
+{% endblock %}
