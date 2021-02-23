@@ -29,6 +29,8 @@
                                 <td>
                                     <select id="{{ question.id }}" name="{{ question.id }}">
                                         <option value="{% if question.answer is odd %}1{% else %}0{% endif %}">D'accord</option>
+                                        <option value="{% if question.answer is odd %}1{% else %}0{% endif %}">Plutôt d'accord</option>
+                                        <option value="{% if question.answer is even %}1{% else %}0{% endif %}">Plutôt pas d'accord</option>
                                         <option value="{% if question.answer is even %}1{% else %}0{% endif %}">Pas d'accord</option>
                                     </select>
                                 </td>
