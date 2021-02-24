@@ -1,0 +1,35 @@
+<p>Votre quotient est {{ score }} !</p>
+
+<p>Voici quelques indications concernant le Quotient 
+    {{ info.category|replace({'AQ': "Autistique", 'EQ': "Empathique", 'FQ': "Amitié & Relation", 'SQ': "Méthodique Révisé"}) }} :
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th colspan="2">{{ info.category }} : 
+                Quotient {{ info.category|replace({'AQ': "Autistique", 'EQ': "Empathique", 'FQ': "Amitié & Relation", 'SQ': "Méthodique Révisé"}) }}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Asperger</td>
+            <td>{{ info.asperger_min }} - {{ info.asperger_max }}</td>
+        </tr>
+        <tr>
+            <td>Homme</td>
+            <td>{{ info.man_min }} - {{ info.man_max }}</td>
+        </tr>
+        <tr>
+            <td>Femme</td>
+            <td>{{ info.woman_min }} - {{ info.woman_max }}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2">Type de calcul : {{ info.score_type }}<br>
+                Quotient Max = {{ info.value_max }}</td>
+        </tr>
+    </tfoot>
+</table>
