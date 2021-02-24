@@ -10,7 +10,7 @@
             <h2>Quotient {{ info.category|replace({'AQ': "Autistique", 'EQ': "Empathique", 'FQ': "Amitié & Relation", 'SQ': "Méthodique Révisé"}) }}</h2>
 
             {% if not score %}
-                <form method="post" action="{{ url('test!read', {'category': info.category}) }}">
+                <form method="post" action="{{ url('test', {'category': info.category}) }}">
                     <table class="table">
                     {% for question in test %}
                         <tr>
@@ -55,7 +55,7 @@
                     <input type="submit" value="Calculate !">
                 </form>
             {% else %}
-                <p>Your score is {{ score }} !</p>
+                {{ include('front/result.twig') }}
             {% endif %}
         </section>
     </main>
