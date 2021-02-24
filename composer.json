@@ -1,15 +1,13 @@
 {
   "name": "philippebeck/asperger",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "type": "project",
   "description": "Blog about Asperger Syndrome",
   "keywords": [
     "asperger",
     "autism spectrum disorders",
-    "blog",
     "twig",
     "animadio",
-    "animadio.js",
     "pam",
     "sql",
     "git"
