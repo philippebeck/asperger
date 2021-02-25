@@ -36,10 +36,10 @@
                             <tr>
                                 <td>{{ question.id }}</td>
                                 <td>
-                                    <label for="{{ question.id }}">{{ question.question }}</label>
+                                    <label class="font-sans-serif" for="{{ question.id }}">{{ question.question }}</label>
                                 </td>
                                 <td>
-                                    <select id="{{ question.id }}" name="{{ question.id }}" required>
+                                    <select class="font-cursive" id="{{ question.id }}" name="{{ question.id }}" required>
                                         <option value="" selected>-- Votre réponse</option>
                                         <option value="{% if question.answer is odd %}2{% else %}0{% endif %}">D'accord</option>
                                         <option value="{% if question.answer is odd %}1{% else %}0{% endif %}">Plutôt d'accord</option>

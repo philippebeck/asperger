@@ -14,12 +14,12 @@
                     <table class="table">
                     {% for question in test %}
                         <tr>
-                            <td>
+                            <td class="font-sans-serif">
                                 <label for="{{ question.id }}">{{ question.id }}. {{ question.question }}</label>
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="font-cursive">
                                 <input id="question_{{ question.id }}_answer_1" type="radio" name="question_{{ question.id }}" value={{ question.value_1 }} required>
                                 <label for="question_{{ question.id }}_answer_1">{{ question.answer_1 }}</label>
                                 <br>                                
