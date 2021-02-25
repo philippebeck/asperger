@@ -15,6 +15,11 @@ body {
   --navbar-background-color: var(--navy-light);
 }
 
+.table {
+  --table-row-odd-hover-background-color: var(--orange-dark);
+  --table-row-even-hover-background-color: var(--green-dark);
+}
+
 .foot {
   --foot-list-background-color: var(--purple-dark);
 }
