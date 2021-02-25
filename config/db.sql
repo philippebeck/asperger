@@ -6,7 +6,7 @@ USE `asperger`;
 CREATE TABLE `Test` (
   `id`                  TINYINT     UNSIGNED  PRIMARY KEY AUTO_INCREMENT,
   `category`            CHAR(2)     NOT NULL  UNIQUE,
-  `score_type`          VARCHAR(20) NOT NULL,
+  `score_type`          TINYINT     UNSIGNED,
   `value_max`           TINYINT     UNSIGNED  NOT NULL,
   `asperger_min`        TINYINT     UNSIGNED  NOT NULL,
   `asperger_max`        TINYINT     UNSIGNED  NOT NULL,
@@ -61,10 +61,10 @@ CREATE TABLE `FQ` (
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 INSERT INTO `Test` (`category`, `score_type`, `value_max`, `asperger_min`, `asperger_max`, `man_min`, `man_max`, `woman_min`, `woman_max`, `author`, `year`, `translation_author`, `translation_year`) VALUES
-('AQ', '(fort) = (faible)', 50, 31, 45, 12, 26, 11, 23, 'Baron-Cohen, Wheelwright, Skinner, Martin & Clubey', 2001, 'Braun & Kempenaers', 2007),
-('EQ', '(fort) = 2*(faible)', 80, 9, 33, 26, 51, 37, 59, 'Baron-Cohen & Wheelwright', 2004, 'Besche-Richard, Olivier & Albert', 2006),
-('FQ', '', 135, 35, 78, 55, 86, 74, 106, 'Baron-Cohen & Wheelwright', 2003, 'Beck', 2021),
-('SQ', '(fort) = 2*(faible)', 150, 50, 120, 35, 80, 25, 70, 'Baron-Cohen, Wheelwright, Skinner, Martin & Clubey', 2003, 'Braun & Kempenaers', 2007);
+('AQ', 1, 50, 31, 45, 12, 26, 11, 23, 'Baron-Cohen, Wheelwright, Skinner, Martin & Clubey', 2001, 'Braun & Kempenaers', 2007),
+('EQ', 2, 80, 9, 33, 26, 51, 37, 59, 'Baron-Cohen & Wheelwright', 2004, 'Besche-Richard, Olivier & Albert', 2006),
+('FQ', null, 135, 35, 78, 55, 86, 74, 106, 'Baron-Cohen & Wheelwright', 2003, 'Beck', 2021),
+('SQ', 2, 150, 50, 120, 35, 80, 25, 70, 'Baron-Cohen, Wheelwright, Skinner, Martin & Clubey', 2003, 'Braun & Kempenaers', 2007);
 
 INSERT INTO `AQ` (`answer`, `question`) VALUES
 (0, 'Je préfère réaliser des activités avec d’autres personnes plutôt que seul(e).'),
