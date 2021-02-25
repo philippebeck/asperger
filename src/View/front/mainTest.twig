@@ -53,6 +53,7 @@
                     </table>
                     <input class="mar-bot-lg" type="submit" value="Calculer !">
                 </form>
+                <p>{{ info.author }} ({{ info.year }}) traduit par {{ info.translation_author }} ({{ info.translation_year }})</p>
             {% else %}
                 {{ include('front/result.twig') }}
             {% endif %}
