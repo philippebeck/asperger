@@ -15,6 +15,10 @@ body {
   --navbar-background-color: var(--navy-light);
 }
 
+[class*="button"] {
+  --btn-font-size: 2rem;
+}
+
 .table {
   --table-row-odd-hover-background-color: var(--orange-dark);
   --table-row-even-hover-background-color: var(--green-dark);
