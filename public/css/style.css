@@ -6,6 +6,11 @@
   --fantasy-font-family: fantasy;
 }
 
+body {
+  --body-font-size: 2rem;
+  --body-line-height: 1.8;
+}
+
 .navbar {
   --navbar-background-color: var(--navy-light);
 }
