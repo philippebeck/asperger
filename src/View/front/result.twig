@@ -28,8 +28,15 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="2">Type de calcul : {{ info.score_type }}<br>
-                Quotient Max = {{ info.value_max }}</td>
+            <td colspan="2">Type de calcul : 
+                {% if info.score_type == 1 %}
+                    (fort) = (faible)
+                {% else %}
+                    (fort) = 2*(faible)
+                {% endif %}
+                <br>
+                Quotient Max = {{ info.value_max }}
+            </td>
         </tr>
     </tfoot>
 </table>

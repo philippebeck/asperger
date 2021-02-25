@@ -1,11 +1,27 @@
 :root {
-  --sans-serif-font-family: 'Text Me One', sans-serif;
-  --serif-font-family: 'Cinzel', serif;
-  --monospace-font-family: 'Share Tech Mono', monospace;
+  --sans-serif-font-family: 'GFS Neohellenic', sans-serif;
+  --serif-font-family: 'Inika', serif;
+  --monospace-font-family: 'Nova Mono', monospace;
+  --cursive-font-family: 'Combo', cursive;
+  --fantasy-font-family: fantasy;
+}
+
+body {
+  --body-font-size: 2rem;
+  --body-line-height: 1.8;
 }
 
 .navbar {
   --navbar-background-color: var(--navy-light);
+}
+
+[class*="button"] {
+  --btn-font-size: 2rem;
+}
+
+.table {
+  --table-row-odd-hover-background-color: var(--orange-dark);
+  --table-row-even-hover-background-color: var(--green-dark);
 }
 
 .foot {

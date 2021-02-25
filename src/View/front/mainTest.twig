@@ -11,6 +11,18 @@
 
             {% if not score %}
                 <form method="post" action="{{ url('test', {'category': info.category}) }}">
+                    <label for="score_type">Méthode de Calcul :</label>
+                    <select id="score_type" class="mar-bot-lg" name="score_type">
+                        <option value="1" 
+                            {% if info.score_type is odd %}selected{% endif %}>
+                            (fort) = (faible)
+                        </option>
+                        <option value="2"
+                            {% if info.score_type is even %}selected{% endif %}>
+                            (fort) = 2*(faible)
+                        </option>
+                    </select>
+
                     <table class="table">
                         <thead>
                         <tr>
@@ -24,22 +36,24 @@
                             <tr>
                                 <td>{{ question.id }}</td>
                                 <td>
-                                    <label for="{{ question.id }}">{{ question.question }}</label>
+                                    <label class="font-sans-serif" for="{{ question.id }}">{{ question.question }}</label>
                                 </td>
                                 <td>
-                                    <select id="{{ question.id }}" name="{{ question.id }}">
-                                        <option value="{% if question.answer is odd %}1{% else %}0{% endif %}">D'accord</option>
+                                    <select class="font-cursive" id="{{ question.id }}" name="{{ question.id }}" required>
+                                        <option value="" selected>-- Votre réponse</option>
+                                        <option value="{% if question.answer is odd %}2{% else %}0{% endif %}">D'accord</option>
                                         <option value="{% if question.answer is odd %}1{% else %}0{% endif %}">Plutôt d'accord</option>
                                         <option value="{% if question.answer is even %}1{% else %}0{% endif %}">Plutôt pas d'accord</option>
-                                        <option value="{% if question.answer is even %}1{% else %}0{% endif %}">Pas d'accord</option>
+                                        <option value="{% if question.answer is even %}2{% else %}0{% endif %}">Pas d'accord</option>
                                     </select>
                                 </td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
-                    <input type="submit" value="Calculate !">
+                    <input class="mar-bot-lg" type="submit" value="Calculer !">
                 </form>
+                <p>{{ info.author }} ({{ info.year }}) traduit par {{ info.translation_author }} ({{ info.translation_year }})</p>
             {% else %}
                 {{ include('front/result.twig') }}
             {% endif %}

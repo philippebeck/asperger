@@ -6,7 +6,7 @@
 
 {% block main %}
     <main>
-        <section>
+        <section class="container-90md-80lg">
             <h2>Quotient {{ info.category|replace({'AQ': "Autistique", 'EQ': "Empathique", 'FQ': "Amitié & Relation", 'SQ': "Méthodique Révisé"}) }}</h2>
 
             {% if not score %}
@@ -14,46 +14,61 @@
                     <table class="table">
                     {% for question in test %}
                         <tr>
-                            <td>
+                            <td class="font-sans-serif">
                                 <label for="{{ question.id }}">{{ question.id }}. {{ question.question }}</label>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <select id="{{ question.id }}" name="{{ question.id }}">
-                                    <option value={{ question.value_1 }}>{{ question.answer_1 }}</option>
-                                    <option value={{ question.value_2 }}>{{ question.answer_2 }}</option>
+                            <td class="font-cursive">
+                                <input id="question_{{ question.id }}_answer_1" type="radio" name="question_{{ question.id }}" value={{ question.value_1 }} required>
+                                <label for="question_{{ question.id }}_answer_1">{{ question.answer_1 }}</label>
+                                <br>                                
+                                <input id="question_{{ question.id }}_answer_2" type="radio" name="question_{{ question.id }}" value={{ question.value_2 }} required>
+                                <label for="question_{{ question.id }}_answer_2">{{ question.answer_2 }}</label>
+                                <br>
 
-                                {% if question.answers > 2 %}
-                                    <option value={{ question.value_3 }}>{{ question.answer_3 }}</option>
-                                {% endif %}
+                            {% if question.answers > 2 %}
+                                <input id="question_{{ question.id }}_answer_3" type="radio" name="question_{{ question.id }}" value={{ question.value_3 }} required>
+                                <label for="question_{{ question.id }}_answer_3">{{ question.answer_3 }}</label>
+                                <br>
+                            {% endif %}
 
-                                {% if question.answers > 3 %}
-                                    <option value={{ question.value_4 }}>{{ question.answer_4 }}</option>
-                                {% endif %}
+                            {% if question.answers > 3 %}
+                                <input id="question_{{ question.id }}_answer_4" type="radio" name="question_{{ question.id }}" value={{ question.value_4 }} required>
+                                <label for="question_{{ question.id }}_answer_4">{{ question.answer_4 }}</label>
+                                <br>
+                            {% endif %}
 
-                                {% if question.answers > 4 %}
-                                    <option value={{ question.value_5 }}>{{ question.answer_5 }}</option>
-                                {% endif %}
+                            {% if question.answers > 4 %}
+                                <input id="question_{{ question.id }}_answer_5" type="radio" name="question_{{ question.id }}" value={{ question.value_5 }} required>
+                                <label for="question_{{ question.id }}_answer_5">{{ question.answer_5 }}</label>
+                                <br>
+                            {% endif %}
 
-                                {% if question.answers > 5 %}
-                                    <option value={{ question.value_6 }}>{{ question.answer_6 }}</option>
-                                {% endif %}
+                            {% if question.answers > 5 %}
+                                <input id="question_{{ question.id }}_answer_6" type="radio" name="question_{{ question.id }}" value={{ question.value_6 }} required>
+                                <label for="question_{{ question.id }}_answer_6">{{ question.answer_6 }}</label>
+                                <br>
+                            {% endif %}
 
-                                {% if question.answers > 6 %}
-                                    <option value={{ question.value_7 }}>{{ question.answer_7 }}</option>
-                                {% endif %}
+                            {% if question.answers > 6 %}
+                                <input id="question_{{ question.id }}_answer_7" type="radio" name="question_{{ question.id }}" value={{ question.value_7 }} required>
+                                <label for="question_{{ question.id }}_answer_7">{{ question.answer_7 }}</label>
+                                <br>
+                            {% endif %}
 
-                                {% if question.answers > 7 %}
-                                    <option value={{ question.value_8 }}>{{ question.answer_8 }}</option>
-                                {% endif %}
-                                </select>
+                            {% if question.answers > 7 %}
+                                <input id="question_{{ question.id }}_answer_8" type="radio" name="question_{{ question.id }}" value={{ question.value_8 }} required>
+                                <label for="question_{{ question.id }}_answer_8">{{ question.answer_8 }}</label>
+                                <br>
+                            {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
                     </table>
-                    <input type="submit" value="Calculate !">
+                    <input class="mar-bot-lg" type="submit" value="Calculer !">
                 </form>
+                <p>{{ info.author }} ({{ info.year }}) traduit par {{ info.translation_author }} ({{ info.translation_year }})</p>
             {% else %}
                 {{ include('front/result.twig') }}
             {% endif %}
