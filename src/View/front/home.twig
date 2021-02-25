@@ -5,14 +5,14 @@
 {% block description %}Tests en ligne pour le Syndrome d'Asperger{% endblock %}
 
 {% block main %}
-    <main>
+    <main class="container-90lg-60wd">
     <header>
         <p>
             Ce site permet de passer différents tests afin d'aider un spécialiste à établir un diagnostique du 
             <a class="button-navy cursor-help" 
                 href="https://fr.wikipedia.org/wiki/Syndrome_d%27Asperger" 
                 title="Voir la page Wikipedia du Syndrome d'Asperger">
-                <em>Syndrome d'Asperger</em>
+                <strong>Syndrome d'Asperger</strong>
             </a>
         </p>
         <p>
@@ -20,7 +20,7 @@
             <a class="button-navy cursor-help" 
                 href="http://www.autismresearchcentre.com/tests" 
                 title="Voir la liste des tests du Centre de Recherche sur l'Autisme">
-                <em>Centre de Recherche sur l'Autisme</em>
+                <strong>Centre de Recherche sur l'Autisme</strong>
             </a>
             de l'Université de Cambridge
         </p>
@@ -31,7 +31,7 @@
         
             <ul class="row anima-full3D-global font-monospace">
                 <li>
-                    <a class="button-orange btn-circle pad-md" 
+                    <a class="button-orange btn-circle pad-lg" 
                         href="{{ url('test', {'category': 'AQ'}) }}" 
                         accesskey="a" 
                         title="Accéder au Quotient Autistique">
@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="button-green btn-circle pad-md" 
+                    <a class="button-green btn-circle pad-lg" 
                         href="{{ url('test', {'category': 'EQ'}) }}" 
                         accesskey="e" 
                         title="Accéder au Quotient Empathique">
@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="button-blue btn-circle pad-md" 
+                    <a class="button-blue btn-circle pad-lg" 
                         href="{{ url('test', {'category': 'FQ'}) }}" 
                         accesskey="f" 
                         title="Accéder au Quotient Amitié & Relation">
@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="button-purple btn-circle pad-md" 
+                    <a class="button-purple btn-circle pad-lg" 
                         href="{{ url('test', {'category': 'SQ'}) }}" 
                         accesskey="s" 
                         title="Accéder au Quotient Méthodique Révisé">
