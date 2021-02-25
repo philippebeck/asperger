@@ -1,7 +1,9 @@
 :root {
-  --sans-serif-font-family: 'Text Me One', sans-serif;
-  --serif-font-family: 'Cinzel', serif;
-  --monospace-font-family: 'Share Tech Mono', monospace;
+  --sans-serif-font-family: 'GFS Neohellenic', sans-serif;
+  --serif-font-family: 'Inika', serif;
+  --monospace-font-family: 'Nova Mono', monospace;
+  --cursive-font-family: 'Combo', cursive;
+  --fantasy-font-family: fantasy;
 }
 
 .navbar {
