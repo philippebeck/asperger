@@ -14,6 +14,22 @@ use Twig\Error\SyntaxError;
  */
 class TestController extends MainController
 {
+    private $info = [];
+
+    private $test = [];
+
+    private $answers = [];
+
+    private $score = 0;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->info = ModelFactory::getModel("Test")->readData($this->getGet()->getGetVar("category"), "category");
+        $this->test = ModelFactory::getModel($this->getGet()->getGetVar("category"))->listData();
+    }
+
     /**
      * @return string
      * @throws LoaderError
@@ -22,42 +38,59 @@ class TestController extends MainController
      */
     public function defaultMethod()
     {
-        $info = ModelFactory::getModel("Test")->readData($this->getGet()->getGetVar("category"), "category");
+        if (!empty($this->getPost()->getPostArray())) {
+            $this->scoreMethod();
 
-        if (empty($this->getPost()->getPostArray())) {
-            $test = ModelFactory::getModel($this->getGet()->getGetVar("category"))->listData();
-
-            if ($this->getGet()->getGetVar("category") === "FQ") {
-
-                return $this->render("front/specialTest.twig", [
-                    "info" => $info,
-                    "test" => $test
-                ]);
-            }
-    
             return $this->render("front/mainTest.twig", [
-                "info" => $info,
-                "test" => $test
-            ]);
-        }
-
-        $score = 0;
-
-        foreach ($this->getPost()->getPostArray() as $answer) {
-            $score += $answer;
-        }
-
-        if ($this->getGet()->getGetVar("category") === "FQ") {
-
-            return $this->render("front/specialTest.twig", [
-                "info" => $info,
-                "score" => $score
+                "info"  => $this->info,
+                "test"  => $this->test,
+                "answers" => $this->answers,
+                "score" => $this->score
             ]);
         }
 
         return $this->render("front/mainTest.twig", [
-                "info"  => $info,
-                "score" => $score
+                "info"  => $this->info,
+                "test" => $this->test
             ]);
+    }
+
+    /**
+    * @return string
+    * @throws LoaderError
+    * @throws RuntimeError
+    * @throws SyntaxError
+    */
+    public function specialMethod()
+    {
+        if (!empty($this->getPost()->getPostArray())) {
+            $this->scoreMethod();
+
+            return $this->render("front/specialTest.twig", [
+                "info" => $this->info,
+                "test" => $this->test,
+                "answers" => $this->answers,
+                "score" => $this->score
+            ]);
+        }
+
+        return $this->render("front/specialTest.twig", [
+            "info" => $this->info,
+            "test" => $this->test
+        ]);        
+    }
+
+    private function scoreMethod()
+    {
+        $score_type     = intval($this->getPost()->getPostArray()["score_type"]);
+        $this->answers  = array_slice($this->getPost()->getPostArray(), 1);
+
+        foreach ($this->answers as $answer) {
+            $this->score += $answer;
+        }
+
+        if ($score_type === 1) {
+            $this->score = $this->score / 2;
+        }
     }
 }
