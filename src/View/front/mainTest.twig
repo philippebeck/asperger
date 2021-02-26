@@ -34,17 +34,21 @@
                         <tbody>
                         {% for question in test %}
                             <tr>
-                                <td>{{ question.id }}</td>
                                 <td>
-                                    <label class="font-sans-serif" for="{{ question.id }}">{{ question.question }}</label>
+                                    <label for="id_{{ question.id }}">{{ question.id }}</label>
+                                    <input id="id_{{ question.id }}" type="hidden" name="id_{{ question.id }}" value="{{ question.id }}">
                                 </td>
                                 <td>
-                                    <select class="font-cursive" id="{{ question.id }}" name="{{ question.id }}" required>
+                                    <label class="font-sans-serif" for="question_{{ question.id }}">{{ question.question }}</label>
+                                    <input id="question_{{ question.id }}" type="hidden" name="question_{{ question.id }}" value="{{ question.question }}">
+                                </td>
+                                <td>
+                                    <select class="font-cursive" name="answer_{{ question.id }}" required>
                                         <option value="" selected>-- Votre réponse</option>
-                                        <option value="{% if question.answer is odd %}2{% else %}0{% endif %}">D'accord</option>
-                                        <option value="{% if question.answer is odd %}1{% else %}0{% endif %}">Plutôt d'accord</option>
-                                        <option value="{% if question.answer is even %}1{% else %}0{% endif %}">Plutôt pas d'accord</option>
-                                        <option value="{% if question.answer is even %}2{% else %}0{% endif %}">Pas d'accord</option>
+                                        <option value="1">D'accord</option>
+                                        <option value="2">Plutôt d'accord</option>
+                                        <option value="3">Plutôt pas d'accord</option>
+                                        <option value="4">Pas d'accord</option>
                                     </select>
                                 </td>
                             </tr>
