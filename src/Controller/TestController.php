@@ -32,7 +32,27 @@ class TestController extends MainController
     /**
      * @var array
      */
-    private $resume = [];
+    private $answers_count = 0;
+
+    /**
+     * @var array
+     */
+    private $form_content = [];
+
+    /**
+     * @var array
+     */
+    private $count = [];
+
+    /**
+     * @var array
+     */
+    private $summary = [];
+
+    /**
+     * @var int
+     */
+    private $score_type = null;
 
     /**
      * @var int
@@ -59,11 +79,14 @@ class TestController extends MainController
     public function defaultMethod()
     {
         if (!empty($this->getPost()->getPostArray())) {
-            $this->scoreMethod();
+            $this->getPostData();
+            $this->setSummary();
+            $this->checkAnswers();
+            $this->calculateScore();
 
             return $this->render("front/mainTest.twig", [
                 "info"      => $this->info,
-                "resume"    => $this->resume,
+                "summary"   => $this->summary,
                 "score"     => $this->score
             ]);
         }
@@ -83,11 +106,14 @@ class TestController extends MainController
     public function specialMethod()
     {
         if (!empty($this->getPost()->getPostArray())) {
-            $this->scoreMethod();
+            $this->getPostData();
+            $this->setSummary();
+            $this->checkAnswers();
+            $this->calculateScore();
 
             return $this->render("front/specialTest.twig", [
                 "info"      => $this->info,
-                "resume"    => $this->resume,
+                "summary"   => $this->summary,
                 "score"     => $this->score
             ]);
         }
@@ -98,37 +124,41 @@ class TestController extends MainController
         ]);        
     }
 
-    private function scoreMethod()
+    private function getPostData()
     {
-        $score_type     = intval($this->getPost()->getPostArray()["score_type"]);
-        $form_content   = array_slice($this->getPost()->getPostArray(), 1);
-        $answers_count  = count($form_content) / 3;
+        $this->score_type     = intval($this->getPost()->getPostArray()["score_type"]);
+        $this->form_content   = array_slice($this->getPost()->getPostArray(), 1);
+        $this->answers_count  = count($this->form_content) / 3;
+    }
 
-        for($i = 1; $i <= $answers_count; $i++) {
-            $this->resume[$i]["id"]         = $form_content["id_" . $i];
-            $this->resume[$i]["question"]   = $form_content["question_" . $i];
-            $this->resume[$i]["answer"]     = $form_content["answer_" . $i];
-            $this->answers[]                = intval($form_content["answer_" . $i]);
+    private function setSummary()
+    {
+        for($i = 1; $i <= $this->answers_count; $i++) {
+            $this->summary[$i]["id"]         = $this->form_content["id_" . $i];
+            $this->summary[$i]["question"]   = $this->form_content["question_" . $i];
+            $this->summary[$i]["answer"]     = $this->form_content["answer_" . $i];
+            $this->answers[]                 = intval($this->form_content["answer_" . $i]);
         }
+    }
 
-        $count = [];
-
-        for($i = 0; $i < $answers_count; $i++) {
+    private function checkAnswers()
+    {
+        for($i = 0; $i < $this->answers_count; $i++) {
 
             if (intval($this->test[$i]["answer"]) === 0) {
 
                 switch ($this->answers[$i]) {
                     case 1:
-                        $count[] = 0;
+                        $this->count[] = 0;
                         break;
                     case 2:
-                        $count[] = 0;
+                        $this->count[] = 0;
                         break;
                     case 3:
-                        $count[] = 1;
+                        $this->count[] = 1;
                         break;
                     case 4:
-                        $count[] = 2;
+                        $this->count[] = 2;
                         break;
                 }
 
@@ -136,26 +166,29 @@ class TestController extends MainController
 
                 switch ($this->answers[$i]) {
                     case 1:
-                        $count[] = 2;
+                        $this->count[] = 2;
                         break;
                     case 2:
-                        $count[] = 1;
+                        $this->count[] = 1;
                         break;
                     case 3:
-                        $count[] = 0;
+                        $this->count[] = 0;
                         break;
                     case 4:
-                        $count[] = 0;
+                        $this->count[] = 0;
                         break;
                 }
             }
         }
+    }
 
-        foreach ($count as $answer) {
+    private function calculateScore()
+    {
+        foreach ($this->count as $answer) {
              $this->score += $answer;
         }
 
-        if ($score_type === 1) {
+        if ($this->score_type === 1) {
             $this->score = $this->score / 2;
         }
 
