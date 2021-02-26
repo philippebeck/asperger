@@ -1,4 +1,15 @@
-<p>Votre quotient <i class="far fa-hand-point-right fa-lg"></i> {{ score }}</p>
+<ul>
+    {% for question in resume %}
+    <li>
+        {{ question.id }}.<br>
+        {{ question.question }}<br>
+        <b>{{ question.answer|replace({1: "D'accord", 2: "Plutôt d'accord", 3: "Plutôt pas d'accord", 4: "Pas d'accord"}) }}</b><br>
+        <i class="fas fa-minus fa-lg mar-bot-md mar-top-md"></i>
+    </li>
+    {% endfor %}
+</ul>
+
+<p class="deco-double">Votre quotient <i class="far fa-hand-point-right fa-lg"></i> {{ score }}</p>
 
 <p>Voici quelques indications concernant le Quotient 
     {{ info.category|replace({'AQ': "Autistique", 'EQ': "Empathique", 'FQ': "Amitié & Relation", 'SQ': "Méthodique Révisé"}) }} :
