@@ -15,51 +15,128 @@
                     {% for question in test %}
                         <tr>
                             <td class="font-sans-serif">
-                                <label for="{{ question.id }}">{{ question.id }}. {{ question.question }}</label>
+
+                                <input id="id_{{ question.id }}" 
+                                    type="hidden" 
+                                    name="id_{{ question.id }}" 
+                                    value="{{ question.id }}">
+
+                                <input id="question_{{ question.id }}" 
+                                    type="hidden" 
+                                    name="question_{{ question.id }}" 
+                                    value="{{ question.question }}">
+
+                                <label for="{{ question.id }}">
+                                    {{ question.id }}. {{ question.question }}
+                                </label>
                             </td>
                         </tr>
                         <tr>
                             <td class="font-cursive">
-                                <input id="question_{{ question.id }}_answer_1" type="radio" name="question_{{ question.id }}" value={{ question.value_1 }} required>
-                                <label for="question_{{ question.id }}_answer_1">{{ question.answer_1 }}</label>
-                                <br>                                
-                                <input id="question_{{ question.id }}_answer_2" type="radio" name="question_{{ question.id }}" value={{ question.value_2 }} required>
-                                <label for="question_{{ question.id }}_answer_2">{{ question.answer_2 }}</label>
+
+                                <input id="answer_1_{{ question.id }}" 
+                                    type="radio" 
+                                    name="answer_{{ question.id }}" 
+                                    value="1"
+                                    required checked>
+
+                                <label for="answer_1_{{ question.id }}">
+                                    {{ question.answer_1 }}
+                                </label>
+                                <br>
+
+                                <input id="answer_2_{{ question.id }}" 
+                                    type="radio" 
+                                    name="answer_{{ question.id }}" 
+                                    value="2"
+                                    required>
+
+                                <label for="answer_{{ question.id }}">
+                                    {{ question.answer_2 }}
+                                </label>
                                 <br>
 
                             {% if question.answers > 2 %}
-                                <input id="question_{{ question.id }}_answer_3" type="radio" name="question_{{ question.id }}" value={{ question.value_3 }} required>
-                                <label for="question_{{ question.id }}_answer_3">{{ question.answer_3 }}</label>
+
+                                <input id="answer_3_{{ question.id }}" 
+                                    type="radio" 
+                                    name="answer_{{ question.id }}" 
+                                    value="3"
+                                    required>
+
+                                <label for="answer_3_{{ question.id }}">
+                                    {{ question.answer_3 }}
+                                </label>
                                 <br>
                             {% endif %}
 
                             {% if question.answers > 3 %}
-                                <input id="question_{{ question.id }}_answer_4" type="radio" name="question_{{ question.id }}" value={{ question.value_4 }} required>
-                                <label for="question_{{ question.id }}_answer_4">{{ question.answer_4 }}</label>
+
+                                <input id="answer_4_{{ question.id }}" 
+                                    type="radio" 
+                                    name="answer_{{ question.id }}" 
+                                    value="4"
+                                    required>
+
+                                <label for="answer_4_{{ question.id }}">
+                                    {{ question.answer_4 }}
+                                </label>
                                 <br>
                             {% endif %}
 
                             {% if question.answers > 4 %}
-                                <input id="question_{{ question.id }}_answer_5" type="radio" name="question_{{ question.id }}" value={{ question.value_5 }} required>
-                                <label for="question_{{ question.id }}_answer_5">{{ question.answer_5 }}</label>
+
+                                <input id="answer_5_{{ question.id }}" 
+                                    type="radio" 
+                                    name="answer_{{ question.id }}" 
+                                    value="5" 
+                                    required>
+
+                                <label for="answer_5_{{ question.id }}">
+                                    {{ question.answer_5 }}
+                                </label>
                                 <br>
                             {% endif %}
 
                             {% if question.answers > 5 %}
-                                <input id="question_{{ question.id }}_answer_6" type="radio" name="question_{{ question.id }}" value={{ question.value_6 }} required>
-                                <label for="question_{{ question.id }}_answer_6">{{ question.answer_6 }}</label>
+
+                                <input id="answer_6_{{ question.id }}" 
+                                    type="radio" 
+                                    name="answer_{{ question.id }}" 
+                                    value="6" 
+                                    required>
+
+                                <label for="answer_6_{{ question.id }}">
+                                    {{ question.answer_6 }}
+                                </label>
                                 <br>
                             {% endif %}
 
                             {% if question.answers > 6 %}
-                                <input id="question_{{ question.id }}_answer_7" type="radio" name="question_{{ question.id }}" value={{ question.value_7 }} required>
-                                <label for="question_{{ question.id }}_answer_7">{{ question.answer_7 }}</label>
+
+                                <input id="answer_7_{{ question.id }}" 
+                                    type="radio" 
+                                    name="answer_{{ question.id }}" 
+                                    value="7" 
+                                    required>
+
+                                <label for="answer_7_{{ question.id }}">
+                                    {{ question.answer_7 }}
+                                </label>
                                 <br>
                             {% endif %}
 
                             {% if question.answers > 7 %}
-                                <input id="question_{{ question.id }}_answer_8" type="radio" name="question_{{ question.id }}" value={{ question.value_8 }} required>
-                                <label for="question_{{ question.id }}_answer_8">{{ question.answer_8 }}</label>
+
+                                <input id="answer_8_{{ question.id }}" 
+                                    type="radio" 
+                                    name="answer_{{ question.id }}" 
+                                    value="8" 
+                                    required>
+
+                                <label for="answer_8_{{ question.id }}">
+                                    {{ question.answer_8 }}
+                                </label>
                                 <br>
                             {% endif %}
                             </td>
