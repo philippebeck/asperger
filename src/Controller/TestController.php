@@ -219,6 +219,11 @@ class TestController extends MainController
                     break;
             }
         }
+
+        for($i = 1; $i < $this->answers_count; $i++) {
+
+            $this->summary[$i]["answer"] = $this->test[$i - 1]['answer_' . $this->answers[$i]];
+        }
     }
 
     private function calculateScore()
