@@ -2,6 +2,9 @@
 
 Tests for Asperger Syndrome
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/05ee0998be4845b1a93d341f2baf5715)](https://www.codacy.com/gh/philippebeck/asperger/dashboard?)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e8f84b6e2513e7c35dbd/maintainability)](https://codeclimate.com/github/philippebeck/asperger/maintainability)
+
 ---
 
 ## Download
