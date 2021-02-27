@@ -130,7 +130,7 @@ class TestController extends MainController
             $this->form_content = $this->getPost()->getPostArray();
 
         } else {
-            $this->score_type       = intval($this->getPost()->getPostArray()["score_type"]);
+            $this->score_type       = (int) $this->getPost()->getPostArray()["score_type"];
             $this->form_content     = array_slice($this->getPost()->getPostArray(), 1);
         }
         
@@ -143,7 +143,7 @@ class TestController extends MainController
             $this->summary[$i]["id"]         = $this->form_content["id_" . $i];
             $this->summary[$i]["question"]   = $this->form_content["question_" . $i];
             $this->summary[$i]["answer"]     = $this->form_content["answer_" . $i];
-            $this->answers[]                 = intval($this->form_content["answer_" . $i]);
+            $this->answers[]                 = (int) $this->form_content["answer_" . $i];
         }
     }
 
@@ -151,7 +151,7 @@ class TestController extends MainController
     {
         for($i = 0; $i < $this->answers_count; $i++) {
 
-            if (intval($this->test[$i]["answer"]) === 0) {
+            if ((int) $this->test[$i]["answer"] === 0) {
 
                 switch ($this->answers[$i]) {
                     case 1:
@@ -168,7 +168,7 @@ class TestController extends MainController
                         break;
                 }
 
-            } elseif (intval($this->test[$i]["answer"]) === 1) {
+            } elseif ((int) $this->test[$i]["answer"] === 1) {
 
                 switch ($this->answers[$i]) {
                     case 1:
