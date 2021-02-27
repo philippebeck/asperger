@@ -182,13 +182,46 @@ class TestController extends MainController
         }
     }
 
+    private function checkSpecialAnswers()
+    {
+        for($i = 0; $i < $this->answers_count; $i++) {
+
+            switch ($this->answers[$i]) {
+                case 1:
+                    $this->count[] = $this->test[$i]['value_1'];
+                    break;
+                case 2:
+                    $this->count[] = $this->test[$i]['value_2'];
+                    break;
+                case 3:
+                    $this->count[] = $this->test[$i]['value_3'];
+                    break;
+                case 4:
+                    $this->count[] = $this->test[$i]['value_4'];
+                    break;
+                case 5:
+                    $this->count[] = $this->test[$i]['value_5'];
+                    break;
+                case 6:
+                    $this->count[] = $this->test[$i]['value_6'];
+                    break;
+                case 7:
+                    $this->count[] = $this->test[$i]['value_7'];
+                    break;
+                case 8:
+                    $this->count[] = $this->test[$i]['value_8'];
+                    break;
+            }
+        }
+    }
+
     private function calculateScore()
     {
         foreach ($this->count as $answer) {
              $this->score += $answer;
         }
 
-        if ($this->score_type === 1) {
+        if ($this->getGet()->getGetVar("category") !== "FQ" && $this->score_type === 1) {
             $this->score = $this->score / 2;
         }
 
