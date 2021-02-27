@@ -233,8 +233,7 @@ class TestController extends MainController
         }
 
         if ($this->getGet()->getGetVar("category") !== "FQ" && $this->score_type === 1) {
-            $this->score = $this->score / 2;
+            $this->score = (int) ($this->score / 2);
         }
-
     }
 }
