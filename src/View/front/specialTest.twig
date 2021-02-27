@@ -10,7 +10,7 @@
             <h2>Quotient {{ info.category|replace({'FQ': "Amitié & Relation"}) }}</h2>
 
             {% if not score %}
-                <form method="post" action="{{ url('test', {'category': info.category}) }}">
+                <form method="post" action="{{ url('test!special', {'category': info.category}) }}">
                     <table class="table">
                     {% for question in test %}
                         <tr>
@@ -145,7 +145,8 @@
                     </table>
                     <input class="mar-bot-lg" type="submit" value="Calculer !">
                 </form>
-                <p>{{ info.author }} ({{ info.year }}) traduit par {{ info.translation_author }} ({{ info.translation_year }})</p>
+                <p>{{ info.author }} ({{ info.year }}) traduit par 
+                    {{ info.translation_author }} ({{ info.translation_year }})</p>
             {% else %}
                 {{ include('front/result.twig') }}
             {% endif %}
