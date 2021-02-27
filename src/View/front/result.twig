@@ -3,7 +3,12 @@
     <li>
         {{ question.id }}.<br>
         {{ question.question }}<br>
-        <b>{{ question.answer|replace({1: "D'accord", 2: "Plutôt d'accord", 3: "Plutôt pas d'accord", 4: "Pas d'accord"}) }}</b><br>
+
+        {% if info.category != 'FQ'%}
+            <b>{{ question.answer|replace({1: "D'accord", 2: "Plutôt d'accord", 3: "Plutôt pas d'accord", 4: "Pas d'accord"}) }}</b><br>
+        {% else %}
+            <b>{{ question.answer}}</b><br>
+        {% endif %}
         <i class="fas fa-minus fa-lg mar-bot-md mar-top-md"></i>
     </li>
     {% endfor %}
@@ -39,11 +44,14 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="2">Type de calcul : 
-                {% if info.score_type == 1 %}
-                    (fort) = (faible)
-                {% else %}
-                    (fort) = 2*(faible)
+            <td colspan="2">
+                {% if info.category != 'FQ' %}
+                    Type de calcul : 
+                    {% if info.score_type == 1 %}
+                        (fort) = (faible)
+                    {% else %}
+                        (fort) = 2*(faible)
+                    {% endif %}
                 {% endif %}
                 <br>
                 Quotient Max = {{ info.value_max }}
