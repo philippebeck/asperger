@@ -3,13 +3,12 @@
     <input id="navbar-open" type="radio" name="navbar">
 
     <a class="anima-slipR" href="./" title="Accueil">
-        <img src="img/logo.svg" alt="Logo Phi">
+        <img src="img/logo.svg" alt="Logo Phi" width="30px" height="30px">
     </a>
 
     <ul>
         <li>
             <a href="{{ url('test', {'category': 'AQ'}) }}" 
-                accesskey="a" 
                 title="Quotient Autistique">
                 <i class="fas fa-user-astronaut fa-lg"></i>
                 <span>AQ</span>
@@ -17,7 +16,6 @@
         </li>
         <li>
             <a href="{{ url('test', {'category': 'EQ'}) }}" 
-                accesskey="e" 
                 title="Quotient Empathique">
                 <i class="fas fa-user-nurse fa-lg"></i>
                 <span>EQ</span>
@@ -25,7 +23,6 @@
         </li>
         <li>
             <a href="{{ url('test!special', {'category': 'FQ'}) }}" 
-                accesskey="f" 
                 title="Quotient Amitié & Relation">
                 <i class="fas fa-users fa-lg"></i>
                 <span>FQ</span>
@@ -33,7 +30,6 @@
         </li>
                 <li>
             <a href="{{ url('test', {'category': 'SQ'}) }}" 
-                accesskey="s" 
                 title="Quotient Méthodique Révisé">
                 <i class="fas fa-user-cog fa-lg"></i>
                 <span>SQ-R</span>
