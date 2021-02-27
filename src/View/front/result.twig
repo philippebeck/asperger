@@ -14,7 +14,7 @@
     {% endfor %}
 </ul>
 
-<p class="deco-double">Votre quotient <i class="far fa-hand-point-right fa-lg"></i> {{ score }}</p>
+<p class="deco-double">Votre quotient <i class="far fa-hand-point-right fa-lg"></i> <b class="color-red">{{ score }}</b></p>
 
 <p>Voici quelques indications concernant le Quotient 
     {{ info.category|replace({'AQ': "Autistique", 'EQ': "Empathique", 'FQ': "Amitié & Relation", 'SQ': "Méthodique Révisé"}) }} :
