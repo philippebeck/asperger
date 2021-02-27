@@ -7,7 +7,7 @@
 {% block main %}
     <main>
         <section>
-            <h2>Quotient {{ info.category|replace({'AQ': "Autistique", 'EQ': "Empathique", 'FQ': "Amitié & Relation", 'SQ': "Méthodique Révisé"}) }}</h2>
+            <h2>Quotient {{ info.category|replace({'AQ': "Autistique", 'EQ': "Empathique", 'SQ': "Méthodique Révisé"}) }}</h2>
 
             {% if not score %}
                 <form method="post" action="{{ url('test', {'category': info.category}) }}">
