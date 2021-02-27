@@ -81,7 +81,7 @@ class TestController extends MainController
         if (!empty($this->getPost()->getPostArray())) {
             $this->getPostData();
             $this->setSummary();
-            $this->checkAnswers();
+            $this->checkMainAnswers();
             $this->calculateScore();
 
             return $this->render("front/mainTest.twig", [
@@ -108,7 +108,7 @@ class TestController extends MainController
         if (!empty($this->getPost()->getPostArray())) {
             $this->getPostData();
             $this->setSummary();
-            $this->checkAnswers();
+            $this->checkSpecialAnswers();
             $this->calculateScore();
 
             return $this->render("front/specialTest.twig", [
@@ -126,9 +126,15 @@ class TestController extends MainController
 
     private function getPostData()
     {
-        $this->score_type     = intval($this->getPost()->getPostArray()["score_type"]);
-        $this->form_content   = array_slice($this->getPost()->getPostArray(), 1);
-        $this->answers_count  = count($this->form_content) / 3;
+        if ($this->getGet()->getGetVar("category") === "FQ") {
+            $this->form_content = $this->getPost()->getPostArray();
+
+        } else {
+            $this->score_type       = intval($this->getPost()->getPostArray()["score_type"]);
+            $this->form_content     = array_slice($this->getPost()->getPostArray(), 1);
+        }
+        
+        $this->answers_count = count($this->form_content) / 3;
     }
 
     private function setSummary()
@@ -141,7 +147,7 @@ class TestController extends MainController
         }
     }
 
-    private function checkAnswers()
+    private function checkMainAnswers()
     {
         for($i = 0; $i < $this->answers_count; $i++) {
 
