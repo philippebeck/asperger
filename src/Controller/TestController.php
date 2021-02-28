@@ -17,7 +17,7 @@ class TestController extends MainController
     /**
      * @var array
      */
-    private $info = [];
+    private $infos = [];
 
     /**
      * @var array
@@ -66,7 +66,7 @@ class TestController extends MainController
     {
         parent::__construct();
 
-        $this->info = ModelFactory::getModel("Test")->readData($this->getGet()->getGetVar("category"), "category");
+        $this->infos = ModelFactory::getModel("Test")->readData($this->getGet()->getGetVar("category"), "category");
         $this->test = ModelFactory::getModel($this->getGet()->getGetVar("category"))->listData();
     }
 

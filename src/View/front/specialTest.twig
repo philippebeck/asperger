@@ -1,13 +1,13 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Test {{ info.category }}{% endblock %}
+{% block title %}Test {{ infos.category }}{% endblock %}
 
-{% block summary %}Test {{ info.category }} pour le Syndrome d'Asperger{% endblock %}
+{% block summary %}Test {{ infos.category }} pour le Syndrome d'Asperger{% endblock %}
 
 {% block main %}
     <main>
         <section class="container-90md-80lg">
-            <h2>Quotient {{ info.category|replace({'FQ': "Amitié & Relation"}) }}</h2>
+            <h2>Quotient {{ infos.category|replace({'FQ': "Amitié & Relation"}) }}</h2>
 
             {% if not score %}
                 <form method="post" action="{{ url('test', {'category': infos.category}) }}">
@@ -145,8 +145,8 @@
                     </table>
                     <input class="mar-bot-lg" type="submit" value="Calculer !">
                 </form>
-                <p>{{ info.author }} ({{ info.year }}) traduit par 
-                    {{ info.translation_author }} ({{ info.translation_year }})</p>
+                <p>{{ infos.author }} ({{ infos.year }}) traduit par 
+                    {{ infos.translation_author }} ({{ infos.translation_year }})</p>
             {% else %}
                 {{ include('front/result.twig') }}
             {% endif %}
