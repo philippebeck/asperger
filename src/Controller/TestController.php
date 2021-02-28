@@ -37,11 +37,6 @@ class TestController extends MainController
     /**
      * @var array
      */
-    private $formContent = [];
-
-    /**
-     * @var array
-     */
     private $answersValues = [];
 
     /**
@@ -74,8 +69,7 @@ class TestController extends MainController
     public function defaultMethod()
     {
         if (!empty($this->getPost()->getPostArray())) {
-            $this->getPostData();
-            $this->setSummary();
+            $this->setSummary($this->getPostData());
             $this->getValues();
             $this->calculateScore();
 
@@ -109,25 +103,34 @@ class TestController extends MainController
         ]);
     }
 
+    /**
+     * @return array
+     */
     private function getPostData()
     {
         if ($this->getGet()->getGetVar("category") === "FQ") {
-            $this->formContent = $this->getPost()->getPostArray();
 
-        } else if ($this->getGet()->getGetVar("category") !== "FQ") {
-            $this->formContent      = array_slice($this->getPost()->getPostArray(), 1);
+            return $this->getPost()->getPostArray();
         }
         
-        $this->questionsCount = count($this->formContent) / 3;
+        if ($this->getGet()->getGetVar("category") !== "FQ") {
+
+            return array_slice($this->getPost()->getPostArray(), 1);
+        }
     }
 
-    private function setSummary()
+    /**
+     * @param array $formContent
+     */
+    private function setSummary(array $formContent)
     {
+        $this->questionsCount = count($formContent) / 3;
+
         for($i = 1; $i <= $this->questionsCount; $i++) {
-            $this->summary[$i]["id"]        = $this->formContent["id_" . $i];
-            $this->summary[$i]["question"]  = $this->formContent["question_" . $i];
-            $this->answers[]                = (int) $this->formContent["answer_" . $i];
-            $this->summary[$i]["answer"]    = $this->formContent["answer_" . $i];
+            $this->summary[$i]["id"]        = $formContent["id_" . $i];
+            $this->summary[$i]["question"]  = $formContent["question_" . $i];
+            $this->summary[$i]["answer"]    = $formContent["answer_" . $i];
+            $this->answers[]                = (int) $formContent["answer_" . $i];
         }
     }
 
@@ -146,13 +149,21 @@ class TestController extends MainController
         $calculationType  = (int) $this->getPost()->getPostArray()["score_type"];
 
         for($i = 0; $i < $this->questionsCount; $i++) {
+            $this->checkCalculationType($calculationType, $i);
+        }
+    }
 
-            if ($calculationType === 1) {
-                $this->getMainWeakValue($i);
+    /**
+     * @param int $calculationType
+     * @param int $id
+     */
+    private function checkCalculationType(int $calculationType, int $id)
+    {
+        if ($calculationType === 1) {
+            $this->getMainWeakValue($id);
 
-            } else if ($calculationType === 2) {
-                $this->getMainStrongValue($i);
-            }
+        } else if ($calculationType === 2) {
+            $this->getMainStrongValue($id);
         }
     }
 
