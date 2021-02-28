@@ -32,27 +32,22 @@ class TestController extends MainController
     /**
      * @var array
      */
-    private $answers_count = 0;
+    private $questionsCount = 0;
 
     /**
      * @var array
      */
-    private $form_content = [];
+    private $formContent = [];
 
     /**
      * @var array
      */
-    private $count = [];
+    private $answersValues = [];
 
     /**
      * @var array
      */
     private $summary = [];
-
-    /**
-     * @var int
-     */
-    private $score_type = null;
 
     /**
      * @var int
@@ -81,7 +76,7 @@ class TestController extends MainController
         if (!empty($this->getPost()->getPostArray())) {
             $this->getPostData();
             $this->setSummary();
-            $this->checkMainAnswers();
+            $this->getValues();
             $this->calculateScore();
 
             if ($this->getGet()->getGetVar("category") !== "FQ") {
@@ -117,113 +112,165 @@ class TestController extends MainController
     private function getPostData()
     {
         if ($this->getGet()->getGetVar("category") === "FQ") {
-            $this->form_content = $this->getPost()->getPostArray();
+            $this->formContent = $this->getPost()->getPostArray();
 
-        } else {
-            $this->score_type       = (int) $this->getPost()->getPostArray()["score_type"];
-            $this->form_content     = array_slice($this->getPost()->getPostArray(), 1);
+        } else if ($this->getGet()->getGetVar("category") !== "FQ") {
+            $this->formContent      = array_slice($this->getPost()->getPostArray(), 1);
         }
         
-        $this->answers_count = count($this->form_content) / 3;
+        $this->questionsCount = count($this->formContent) / 3;
     }
 
     private function setSummary()
     {
-        for($i = 1; $i <= $this->answers_count; $i++) {
-            $this->summary[$i]["id"]         = $this->form_content["id_" . $i];
-            $this->summary[$i]["question"]   = $this->form_content["question_" . $i];
-            $this->summary[$i]["answer"]     = $this->form_content["answer_" . $i];
-            $this->answers[]                 = (int) $this->form_content["answer_" . $i];
+        for($i = 1; $i <= $this->questionsCount; $i++) {
+            $this->summary[$i]["id"]        = $this->formContent["id_" . $i];
+            $this->summary[$i]["question"]  = $this->formContent["question_" . $i];
+            $this->answers[]                = (int) $this->formContent["answer_" . $i];
+            $this->summary[$i]["answer"]    = $this->formContent["answer_" . $i];
         }
     }
 
-    private function checkMainAnswers()
+    private function getValues()
     {
-        for($i = 0; $i < $this->answers_count; $i++) {
+        if ($this->getGet()->getGetVar("category") !== "FQ") {
+            $this->getMainValues();
 
-            if ((int) $this->test[$i]["answer"] === 0) {
+        } else if ($this->getGet()->getGetVar("category") === "FQ") {
+            $this->getSpecialValues();
+        }
+    }
 
-                switch ($this->answers[$i]) {
-                    case 1:
-                        $this->count[] = 0;
-                        break;
-                    case 2:
-                        $this->count[] = 0;
-                        break;
-                    case 3:
-                        $this->count[] = 1;
-                        break;
-                    case 4:
-                        $this->count[] = 2;
-                        break;
-                }
+    private function getMainValues()
+    {
+        $calculationType  = (int) $this->getPost()->getPostArray()["score_type"];
 
-            } elseif ((int) $this->test[$i]["answer"] === 1) {
+        for($i = 0; $i < $this->questionsCount; $i++) {
 
-                switch ($this->answers[$i]) {
-                    case 1:
-                        $this->count[] = 2;
-                        break;
-                    case 2:
-                        $this->count[] = 1;
-                        break;
-                    case 3:
-                        $this->count[] = 0;
-                        break;
-                    case 4:
-                        $this->count[] = 0;
-                        break;
-                }
+            if ($calculationType === 1) {
+                $this->getMainWeakValue($i);
+
+            } else if ($calculationType === 2) {
+                $this->getMainStrongValue($i);
             }
         }
     }
 
-    private function checkSpecialAnswers()
+    private function getSpecialValues()
     {
-        for($i = 0; $i < $this->answers_count; $i++) {
+        for($i = 1; $i < $this->questionsCount; $i++) {
+            $this->getSpecialValue($i);
+            $this->summary[$i]["answer"] = $this->test[$i - 1]['answer_' . $this->answers[$i]];
+        }
+    }
 
-            switch ($this->answers[$i]) {
+    /**
+     * @param int $id
+     */
+    private function getMainWeakValue(int $id)
+    {
+        if ((int) $this->test[$id]["answer"] === 0) {
+
+            switch ($this->answers[$id]) {
                 case 1:
-                    $this->count[] = $this->test[$i]['value_1'];
-                    break;
                 case 2:
-                    $this->count[] = $this->test[$i]['value_2'];
+                    $this->answersValues[] = 0;
                     break;
                 case 3:
-                    $this->count[] = $this->test[$i]['value_3'];
-                    break;
                 case 4:
-                    $this->count[] = $this->test[$i]['value_4'];
+                    $this->answersValues[] = 1;
                     break;
-                case 5:
-                    $this->count[] = $this->test[$i]['value_5'];
+            }
+
+        } elseif ((int) $this->test[$id]["answer"] === 1) {
+
+            switch ($this->answers[$id]) {
+                case 1:
+                case 2:
+                    $this->answersValues[] = 1;
                     break;
-                case 6:
-                    $this->count[] = $this->test[$i]['value_6'];
-                    break;
-                case 7:
-                    $this->count[] = $this->test[$i]['value_7'];
-                    break;
-                case 8:
-                    $this->count[] = $this->test[$i]['value_8'];
+                case 3:
+                case 4:
+                    $this->answersValues[] = 0;
                     break;
             }
         }
+    }
 
-        for($i = 1; $i < $this->answers_count; $i++) {
+    /**
+     * @param int $id
+     */
+    private function getMainStrongValue($id)
+    {
+        if ((int) $this->test[$id]["answer"] === 0) {
 
-            $this->summary[$i]["answer"] = $this->test[$i - 1]['answer_' . $this->answers[$i]];
+            switch ($this->answers[$id]) {
+                case 1:
+                case 2:
+                    $this->answersValues[] = 0;
+                    break;
+                case 3:
+                    $this->answersValues[] = 1;
+                    break;
+                case 4:
+                    $this->answersValues[] = 2;
+                    break;
+            }
+
+        } elseif ((int) $this->test[$id]["answer"] === 1) {
+
+            switch ($this->answers[$id]) {
+                case 1:
+                    $this->answersValues[] = 2;
+                    break;
+                case 2:
+                    $this->answersValues[] = 1;
+                    break;
+                case 3:
+                case 4:
+                    $this->answersValues[] = 0;
+                    break;
+            }
+        }
+    }
+
+    /**
+     * @param int $id
+     */
+    private function getSpecialValue($id)
+    {
+        switch ($this->answers[$id]) {
+            case 1:
+                $this->answersValues[] = $this->test[$id]['value_1'];
+                break;
+            case 2:
+                $this->answersValues[] = $this->test[$id]['value_2'];
+                break;
+            case 3:
+                $this->answersValues[] = $this->test[$id]['value_3'];
+                break;
+            case 4:
+                $this->answersValues[] = $this->test[$id]['value_4'];
+                break;
+            case 5:
+                $this->answersValues[] = $this->test[$id]['value_5'];
+                break;
+            case 6:
+                $this->answersValues[] = $this->test[$id]['value_6'];
+                break;
+            case 7:
+                $this->answersValues[] = $this->test[$id]['value_7'];
+                break;
+            case 8:
+                $this->answersValues[] = $this->test[$id]['value_8'];
+                break;
         }
     }
 
     private function calculateScore()
     {
-        foreach ($this->count as $answer) {
-             $this->score += $answer;
-        }
-
-        if ($this->getGet()->getGetVar("category") !== "FQ" && $this->score_type === 1) {
-            $this->score = (int) ($this->score / 2);
+        foreach ($this->answersValues as $value) {
+             $this->score += $value;
         }
     }
 }
