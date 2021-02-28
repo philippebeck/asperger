@@ -84,44 +84,34 @@ class TestController extends MainController
             $this->checkMainAnswers();
             $this->calculateScore();
 
-            return $this->render("front/mainTest.twig", [
-                "info"      => $this->info,
+            if ($this->getGet()->getGetVar("category") !== "FQ") {
+
+                return $this->render("front/mainTest.twig", [
+                    "infos"     => $this->infos,
+                    "summary"   => $this->summary,
+                    "score"     => $this->score
+                ]);
+            }
+
+            return $this->render("front/specialTest.twig", [
+                "infos"     => $this->infos,
                 "summary"   => $this->summary,
                 "score"     => $this->score
             ]);
         }
 
-        return $this->render("front/mainTest.twig", [
-                "info"  => $this->info,
-                "test" => $this->test
-            ]);
-    }
+        if ($this->getGet()->getGetVar("category") !== "FQ") {
 
-    /**
-    * @return string
-    * @throws LoaderError
-    * @throws RuntimeError
-    * @throws SyntaxError
-    */
-    public function specialMethod()
-    {
-        if (!empty($this->getPost()->getPostArray())) {
-            $this->getPostData();
-            $this->setSummary();
-            $this->checkSpecialAnswers();
-            $this->calculateScore();
-
-            return $this->render("front/specialTest.twig", [
-                "info"      => $this->info,
-                "summary"   => $this->summary,
-                "score"     => $this->score
-            ]);
+            return $this->render("front/mainTest.twig", [
+                    "infos" => $this->infos,
+                    "test"  => $this->test
+                ]);
         }
 
         return $this->render("front/specialTest.twig", [
-            "info" => $this->info,
-            "test" => $this->test
-        ]);        
+            "infos" => $this->infos,
+            "test"  => $this->test
+        ]);
     }
 
     private function getPostData()

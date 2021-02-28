@@ -10,7 +10,7 @@
             <h2>Quotient {{ info.category|replace({'FQ': "Amitié & Relation"}) }}</h2>
 
             {% if not score %}
-                <form method="post" action="{{ url('test!special', {'category': info.category}) }}">
+                <form method="post" action="{{ url('test', {'category': infos.category}) }}">
                     <table class="table">
                     {% for question in test %}
                         <tr>
