@@ -2,7 +2,7 @@
 
 {% block title %}Contact{% endblock %}
 
-{% block description %}You can Contact me by Message{% endblock %}
+{% block description %}Vous pouvez me contacter par message{% endblock %}
 
 {% block script %}
     <script src="js/recaptcha.js"></script>
@@ -18,32 +18,32 @@
             <fieldset>
                 <ul>
                     <li>
-                        <label class="anima-slideR" for="name">Name</label>
+                        <label class="anima-slideR" for="name">Nom</label>
                         <input class="anima-slideL" 
                             id="name" 
                             name="name" 
                             type="text" 
-                            placeholder="Your name" 
+                            placeholder="Votre nom" 
                             maxlength="20" 
                             required>
                     </li>
                     <li>
-                        <label class="anima-slideR" for="email">Email</label>
+                        <label class="anima-slideR" for="email">Courriel</label>
                         <input class="anima-slideL" 
                             id="email" 
                             name="email" 
                             type="email" 
-                            placeholder="Your email" 
+                            placeholder="Votre email" 
                             maxlength="50" 
                             required>
                     </li>
                     <li>
-                        <label class="anima-slideR" for="subject">Subject</label>
+                        <label class="anima-slideR" for="subject">Sujet</label>
                         <input class="anima-slideL" 
                             id="subject" 
                             name="subject" 
                             type="text" 
-                            placeholder="Your subject" 
+                            placeholder="Votre sujet" 
                             maxlength="50" 
                             required>
                     </li>
@@ -52,7 +52,7 @@
                         <textarea class="anima-slideL" 
                             id="message" 
                             name="message" 
-                            placeholder="Your message" 
+                            placeholder="Votre message" 
                             rows="5" 
                             cols="20">
                         </textarea>
@@ -66,12 +66,12 @@
                         </div>
                     </li>
                     <li>
-                        <input class="anima-slideR" type="reset" value="Reset">
-                        <input class="anima-slideL" type="submit" value="Send">
+                        <input class="anima-slideR" type="reset" value="Réinitialiser">
+                        <input class="anima-slideL" type="submit" value="Envoyer">
                     </li>
                 </ul>
             </fieldset>
         </form>
-        <a class="btn-black btn-lg" href="{{ url('home') }}">Quit</a>
+        <a class="btn-black btn-lg" href="{{ url('home') }}">Quitter</a>
     </main>
 {% endblock %}
