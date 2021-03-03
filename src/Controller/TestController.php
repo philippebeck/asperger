@@ -56,8 +56,19 @@ class TestController extends MainController
     {
         parent::__construct();
 
-        $this->infos = ModelFactory::getModel("Test")->readData($this->getGet()->getGetVar("category"), "category");
-        $this->test = ModelFactory::getModel($this->getGet()->getGetVar("category"))->listData();
+        switch ($this->getGet()->getGetVar("category")) {
+
+            case 'AQ':
+            case 'EQ':
+            case 'FQ':
+            case 'SQ':
+                $this->infos    = ModelFactory::getModel("Test")->readData($this->getGet()->getGetVar("category"), "category");
+                $this->test     = ModelFactory::getModel($this->getGet()->getGetVar("category"))->listData();
+                break;
+
+            default:
+                $this->redirect('home');
+        }
     }
 
     /**
