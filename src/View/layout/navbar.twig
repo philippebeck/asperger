@@ -1,11 +1,22 @@
 <nav class="navbar">
-    <input id="navbar-close" type="radio" name="navbar" checked>
-    <input id="navbar-open" type="radio" name="navbar">
+    <input id="navbar-close" 
+        class="navbar-close"
+        type="radio" 
+        name="navbar" 
+        checked>
+    <input id="navbar-open" 
+        class="navbar-open"
+        type="radio" 
+        name="navbar">
 
-    <a class="anima-slipR" href="./" title="Accueil">
-        <img src="img/logo.svg" alt="Logo Phi" width="30px" height="30px">
+    <a class="anima-slideR" 
+        href="./" 
+        title="Accueil">
+        <img src="img/logo.svg" 
+            alt="Logo Phi" 
+            width="30px" 
+            height="30px">
     </a>
-
     <ul>
         <li>
             <a href="{{ url('test', {'category': 'AQ'}) }}" 
@@ -36,35 +47,35 @@
             </a>
         </li>
     </ul>
-
-    <ul class="anima-slipL">
+    <ul class="anima-slideL">
         <li>
-            <a class="color-blue-onto" 
+            <a class="onto-color-cyan" 
                 href="{{ url('contact') }}" 
                 title="Contact">
                 <i class="fas fa-at fa-lg"></i>
             </a>
         </li>
         <li>
-            <a class="color-magenta-onto" 
+            <a class="onto-color-pink" 
                 href="https://github.com/sponsors/philippebeck" 
                 title="Sponsor">
                 <i class="far fa-heart fa-lg"></i>
             </a>
         </li>
         <li>
-            <a class="color-tw-onto" 
+            <a class="onto-color-pp" 
                 href="https://paypal.me/philippebeck" 
                 title="Donation">
                 <i class="fab fa-paypal fa-lg"></i>
             </a>
         </li>
     </ul>
-
-    <label for="navbar-close" title="Close the Navigation Menu">
+    <label for="navbar-close" 
+        title="Close the Navigation Menu">
         <i class="fas fa-angle-double-up fa-lg"></i>
     </label>
-    <label for="navbar-open" title="Open the Navigation Menu">
+    <label for="navbar-open" 
+        title="Open the Navigation Menu">
         <i class="fas fa-angle-double-down fa-lg"></i>
     </label>
 </nav>
