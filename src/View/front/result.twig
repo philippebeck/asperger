@@ -1,58 +1,98 @@
 <ul>
     {% for question in summary %}
     <li>
-        {{ question.id }}.<br>
-        {{ question.question }}<br>
+        {{ question.id }}.
+        <br>
+        {{ question.question }}
+        <br>
 
         {% if infos.category != 'FQ'%}
-            <b>{{ question.answer|replace({1: "D'accord", 2: "Plutôt d'accord", 3: "Plutôt pas d'accord", 4: "Pas d'accord"}) }}</b><br>
+            <b>{{ question.answer|replace({
+                    1: "D'accord", 
+                    2: "Plutôt d'accord", 
+                    3: "Plutôt pas d'accord", 
+                    4: "Pas d'accord"
+                }) }}
+            </b>
+            <br>
         {% else %}
-            <b>{{ question.answer}}</b><br>
+            <b>{{ question.answer}}</b>
+            <br>
         {% endif %}
+        
         <i class="fas fa-minus fa-lg mar-bot-md mar-top-md"></i>
     </li>
     {% endfor %}
 </ul>
 
-<p class="deco-double">Votre quotient <i class="far fa-hand-point-right fa-lg"></i> <b class="color-red">{{ score }}</b></p>
+<p class="deco-double">
+    Votre quotient 
+    <i class="far fa-hand-point-right fa-lg"></i> 
+    <b class="color-red">{{ score }}</b>
+</p>
 
-<p>Voici quelques indications concernant le Quotient 
-    {{ infos.category|replace({'AQ': "Autistique", 'EQ': "Empathique", 'FQ': "Amitié & Relation", 'SQ': "Méthodique Révisé"}) }} :
+<p>
+    Voici quelques indications concernant le Quotient 
+    {{ infos.category|replace({
+        'AQ': "Autistique", 
+        'EQ': "Empathique", 
+        'FQ': "Amitié & Relation", 
+        'SQ': "Méthodique Révisé"
+    }) }} :
 </p>
 
 <table class="table">
     <thead>
         <tr>
-            <th colspan="2">{{ infos.category }} : 
-                Quotient {{ infos.category|replace({'AQ': "Autistique", 'EQ': "Empathique", 'FQ': "Amitié & Relation", 'SQ': "Méthodique Révisé"}) }}
+            <th colspan="2">
+                {{ infos.category }} : Quotient 
+                {{ infos.category|replace({
+                    'AQ': "Autistique", 
+                    'EQ': "Empathique", 
+                    'FQ': "Amitié & Relation", 
+                    'SQ': "Méthodique Révisé"
+                }) }}
             </th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>Asperger</td>
-            <td>{{ infos.asperger_min }} - {{ infos.asperger_max }}</td>
+            <td>
+                {{ infos.asperger_min }} - 
+                {{ infos.asperger_max }}
+            </td>
         </tr>
         <tr>
             <td>Homme</td>
-            <td>{{ infos.man_min }} - {{ infos.man_max }}</td>
+            <td>
+                {{ infos.man_min }} - 
+                {{ infos.man_max }}
+            </td>
         </tr>
         <tr>
             <td>Femme</td>
-            <td>{{ infos.woman_min }} - {{ infos.woman_max }}</td>
+            <td>
+                {{ infos.woman_min }} - 
+                {{ infos.woman_max }}
+            </td>
         </tr>
     </tbody>
     <tfoot>
         <tr>
             <td colspan="2">
+
                 {% if infos.category != 'FQ' %}
-                    Type de calcul : 
+                Type de calcul : 
+
                     {% if infos.score_type == 1 %}
-                        (fort) = (faible)
+                    (fort) = (faible)
                     {% else %}
-                        (fort) = 2*(faible)
+                    (fort) = 2*(faible)
                     {% endif %}
+
                 {% endif %}
+
                 <br>
                 Quotient Max = {{ infos.value_max }}
             </td>
