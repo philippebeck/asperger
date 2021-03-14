@@ -1,28 +1,21 @@
 :root {
-  --sans-serif-font-family: 'GFS Neohellenic', sans-serif;
-  --serif-font-family: 'Inika', serif;
-  --monospace-font-family: 'Nova Mono', monospace;
-  --cursive-font-family: 'Combo', cursive;
-}
-
-body {
-  --body-font-size: 2rem;
-  --body-line-height: 1.8;
+  --sans-serif: 'GFS Neohellenic', sans-serif;
+  --serif: 'Inika', serif;
+  --monospace: 'Nova Mono', monospace;
+  --cursive: 'Combo', cursive;
 }
 
 .navbar {
-  --navbar-background-color: var(--navy-light);
-}
-
-[class*="button"] {
-  --btn-font-size: 2rem;
+  --navbar-background-color: var(--blue-dark);
 }
 
 .table {
-  --table-row-odd-hover-background-color: var(--orange-dark);
-  --table-row-even-hover-background-color: var(--green-dark);
+  --table-row-odd-hover-background-color: var(--orange-light);
+  --table-row-even-hover-background-color: var(--green-light);
+  --table-row-odd-hover-color: var(--black);
+  --table-row-even-hover-color: var(--black);
 }
 
 .foot {
-  --foot-list-background-color: var(--purple-dark);
+  --foot-list-background-color: var(--violet-dark);
 }
