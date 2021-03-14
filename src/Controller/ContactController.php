@@ -40,13 +40,13 @@ class ContactController extends MainController
 
             if ($this->getSecurity()->checkRecaptcha($this->mail["g-recaptcha-response"])) {
                 $this->getMail()->sendMessage($this->mail);
-                $this->getSession()->createAlert("Message successfully sent to " . MAIL_USERNAME . " !", "green");
+                $this->getSession()->createAlert("Message Envoyé avec Succès à " . MAIL_USERNAME . " !", "green");
 
                 $this->redirect("home");
             }
         }
 
-        $this->getSession()->createAlert("Check the reCAPTCHA !", "red");
+        $this->getSession()->createAlert("Vérifier le reCAPTCHA !", "red");
 
         $this->redirect("contact");
     }
