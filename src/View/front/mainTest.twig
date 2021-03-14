@@ -38,62 +38,50 @@
                     </option>
                 </select>
                 <table class="table">
-                    <thead>
+
+                {% for question in test %}
                     <tr>
-                        <th>#</th>
-                        <th>Question</th>
-                        <th>Réponse</th>
+                        <td>
+                            <label class="font-sans-serif" 
+                                for="question_{{ question.id }}">
+                                {{ question.id }}. {{ question.question }}
+                            </label>
+                            <input id="id_{{ question.id }}" 
+                                type="hidden" 
+                                name="id_{{ question.id }}" 
+                                value="{{ question.id }}">
+                            <input id="question_{{ question.id }}" 
+                                type="hidden" 
+                                name="question_{{ question.id }}" 
+                                value="{{ question.question }}">
+                        </td>
                     </tr>
-                    </thead>
-                    <tbody>
+                    <tr>
+                        <td>
+                            <select class="font-cursive" 
+                                name="answer_{{ question.id }}" 
+                                required>
+                                <option value="" 
+                                    selected>
+                                    -- Votre réponse
+                                </option>
+                                <option value="1">
+                                    D'accord
+                                </option>
+                                <option value="2">
+                                    Plutôt d'accord
+                                </option>
+                                <option value="3">
+                                    Plutôt pas d'accord
+                                </option>
+                                <option value="4">
+                                    Pas d'accord
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                {% endfor %}
 
-                    {% for question in test %}
-                        <tr>
-                            <td>
-                                <label for="id_{{ question.id }}">
-                                    {{ question.id }}
-                                </label>
-                                <input id="id_{{ question.id }}" 
-                                    type="hidden" 
-                                    name="id_{{ question.id }}" 
-                                    value="{{ question.id }}">
-                            </td>
-                            <td>
-                                <label class="font-sans-serif" 
-                                    for="question_{{ question.id }}">
-                                    {{ question.question }}
-                                </label>
-                                <input id="question_{{ question.id }}" 
-                                    type="hidden" 
-                                    name="question_{{ question.id }}" 
-                                    value="{{ question.question }}">
-                            </td>
-                            <td>
-                                <select class="font-cursive" 
-                                    name="answer_{{ question.id }}" 
-                                    required>
-                                    <option value="" 
-                                        selected>
-                                        -- Votre réponse
-                                    </option>
-                                    <option value="1">
-                                        D'accord
-                                    </option>
-                                    <option value="2">
-                                        Plutôt d'accord
-                                    </option>
-                                    <option value="3">
-                                        Plutôt pas d'accord
-                                    </option>
-                                    <option value="4">
-                                        Pas d'accord
-                                    </option>
-                                </select>
-                            </td>
-                        </tr>
-                    {% endfor %}
-
-                    </tbody>
                 </table>
                 <input class="btn-blue btn-lg" 
                     type="submit" 
