@@ -3,6 +3,7 @@
   --serif: 'Inika', serif;
   --monospace: 'Nova Mono', monospace;
   --cursive: 'Combo', cursive;
+  --shrink: scale(1.5, 1.5);
 }
 
 .navbar {
