@@ -18,7 +18,7 @@
   "repository": "github:philippebeck/asperger",
   "bugs": "https://github.com/philippebeck/asperger/issues",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.2",
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "animadio": "^4.0.1"
   },
   "author": {
