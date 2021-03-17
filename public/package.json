@@ -19,7 +19,7 @@
   "bugs": "https://github.com/philippebeck/asperger/issues",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
-    "animadio": "^4.0.0"
+    "animadio": "^4.0.1"
   },
   "author": {
     "name": "Philippe Beck",
