@@ -5,8 +5,8 @@
 {% block summary %}Test {{ infos.category }} pour le Syndrome d'Asperger{% endblock %}
 
 {% block main %}
-<main>
-    <section class="container-90md-80lg">
+<main class="container-90md-80lg-70xl-60wd">
+    <section>
         <h2>Quotient {{ infos.category|replace({'FQ': "Amitié & Relation"}) }}</h2>
 
         {% if not score %}
