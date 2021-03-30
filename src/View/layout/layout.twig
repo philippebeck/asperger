@@ -8,13 +8,21 @@
 
     <title>{{ block('title') }}</title>
 
+    <link rel="preload" 
+        href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" 
+        as="style">
+    <link rel="preload" 
+        href="node_modules/animadio/dist/animadio.min.css" 
+        as="style">
+    <link rel="preload" 
+        href="css/style.css" 
+        as="style">
+
     <link rel="canonical" 
         href="{% block canonical %}https://asperger.philippebeck.net{% endblock %}">
     <link rel="icon" 
         type="image/x-icon" 
         href="img/favicon.ico">
-    <link rel="preconnect"  
-        href="https://fonts.gstatic.com">
 
     <meta name="description"    
         content="{% block description %}{{ block('title') }} : {{ block('summary') }}{% endblock %}">
@@ -46,12 +54,13 @@
         content="@ph_beck">
 
     <link rel="stylesheet" 
-        href="https://fonts.googleapis.com/css2?family=Combo&family=GFS+Neohellenic&family=Inika&family=Nova+Mono&display=swap"> 
-    <link rel="stylesheet" 
+        media="all" 
         href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" 
+        media="all" 
         href="node_modules/animadio/dist/animadio.min.css">
     <link rel="stylesheet" 
+        media="all" 
         href="css/style.css">
 </head>
 
@@ -67,7 +76,7 @@
             </p>
         {% endif %}
 
-        <h1 class="color-violet">
+        <h1>
             {{ block('title') }}
         </h1>
     </header>
