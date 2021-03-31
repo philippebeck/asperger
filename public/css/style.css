@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Combo&family=GFS+Neohellenic&family=Inika&family=Nova+Mono&display=swap');
+
 :root {
   --sans-serif: 'GFS Neohellenic', sans-serif;
   --serif: 'Inika', serif;
@@ -11,10 +13,10 @@
 }
 
 .table {
-  --table-row-odd-hover-background-color: var(--orange-light);
-  --table-row-even-hover-background-color: var(--green-light);
-  --table-row-odd-hover-color: var(--black);
-  --table-row-even-hover-color: var(--black);
+  --table-odd-hover-background-color: var(--orange-light);
+  --table-even-hover-background-color: var(--green-light);
+  --table-odd-hover-color: var(--black);
+  --table-even-hover-color: var(--black);
 }
 
 .foot {
