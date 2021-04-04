@@ -5,20 +5,6 @@
   --serif: 'Inika', serif;
   --monospace: 'Nova Mono', monospace;
   --cursive: 'Combo', cursive;
-  --shrink: scale(1.5, 1.5);
-}
 
-.navbar {
-  --navbar-background-color: var(--blue-dark);
-}
-
-.table {
-  --table-odd-hover-background-color: var(--orange-light);
-  --table-even-hover-background-color: var(--green-light);
-  --table-odd-hover-color: var(--black);
-  --table-even-hover-color: var(--black);
-}
-
-.foot {
-  --foot-list-background-color: var(--violet-dark);
+  --shrink: scale(1.1, 1.1);
 }
