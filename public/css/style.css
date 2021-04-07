@@ -8,3 +8,29 @@
 
   --shrink: scale(1.1, 1.1);
 }
+
+.navbar {
+  --navbar-link-hover-color: var(--yellow);
+}
+
+.head {
+  --head-border: outset medium var(--tw);
+}
+
+.table {
+  --table-box-shadow: unset;
+  --table-row-hover-background-color: var(--blue-light);
+  --table-odd-color: var(--primary);
+  --table-even-color: var(--pp);
+  --table-even-background-color: var(--grey-light);
+}
+
+.form {
+  --form-border: ridge thick var(--tw);
+  --form-field-border: outset medium var(--blue);
+}
+
+.foot {
+  --foot-title-color: var(--yellow);
+  --foot-list-hover-color: var(--yellow);
+}
