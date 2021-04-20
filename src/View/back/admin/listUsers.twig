@@ -1,18 +1,18 @@
 <section class="menu-target7">
     <h2>
-        <i class="fas fa-user-cog"></i> 
-        Utilisateurs
+        <i class="fas fa-user-ninja"></i> 
+        Administrateurs
     </h2>
 
     <a class="btn-green btn-lg" 
         href="{{ url('user!create') }}">
-        Nouvel Utilisateur
+        Nouvel Administrateur
     </a>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Utilisateur</th>
+                <th>Administrateur</th>
                 <th>Courriel</th>
             </tr>
         </thead>
@@ -35,12 +35,12 @@
                     <br>
                     <a class="btn-blue" 
                         href="{{ url('user!update', {'id': user.id}) }}"
-                        title="Modifier l'Utilisateur">
+                        title="Modifier l'Administrateur">
                         <i class="fas fa-pen-square fa-fw fa-lg"></i>
                     </a>
                     <a class="btn-red" 
                         href="{{ url('user!delete', {'id': user.id}) }}"
-                        title="Supprimer l'Utilisateur">
+                        title="Supprimer l'Administrateur">
                         <i class="fas fa-times-circle fa-fw fa-lg"></i>
                     </a>
                 </td>
