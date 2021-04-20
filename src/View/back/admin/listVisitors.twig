@@ -1,0 +1,30 @@
+<section class="menu-target6">
+    <h2>
+        <i class="fas fa-user-secret"></i> 
+        Visiteurs
+    </h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date de Visite</th>
+                <th>Test: Score</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for visitor in visitors %}
+            <tr>
+                <td>
+                    {{ visitor.visitDate }}
+                </td>
+                <td>
+                    {{ visitor.test }}:
+                    {{ visitor.score }}
+                 </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</section>
