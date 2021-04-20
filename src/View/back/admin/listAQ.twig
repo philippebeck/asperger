@@ -1,0 +1,43 @@
+<section class="menu-target2">
+    <h2>
+        <i class="fas fa-user-astronaut"></i> 
+        Quotient Autistique
+    </h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Réponse</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for aQuestion in aQuestions %}
+            <tr>
+                <td>
+                    {{ aQuestion.id }}.
+                    {{ aQuestion.question }}
+                </td>
+                <td>
+                    {% if aQuestion.answer is odd %}
+                        D'accord
+                    {% else %}
+                        Pas d'accord
+                    {% endif %}
+
+                    <br>
+                    <a class="btn-blue" 
+                        href="{{ url('question!update', 
+                            {'id': aQuestion.id, 'category': 'AQ'}) 
+                        }}"
+                        title="Modifier la Question">
+                        <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</section>

@@ -1,0 +1,84 @@
+<section class="menu-target4">
+    <h2>
+        <i class="fas fa-users"></i> 
+        Quotient Amitié & Relation
+    </h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Réponses</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for fQuestion in fQuestions %}
+            <tr>
+                <td>
+                    {{ fQuestion.id }}.
+
+                    {% if fQuestion.question %}
+                        {{ fQuestion.question }}
+                    {% endif %}
+
+                    ({{ fQuestion.answers }})
+
+                    <br>
+                    <a class="btn-blue" 
+                        href="{{ url('question!update', 
+                            {'id': fQuestion.id, 'category': 'FQ'}) 
+                        }}"
+                        title="Modifier la Question">
+                        <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                    </a>
+                </td>
+                <td>
+                    - {{ fQuestion.answer_1 }}
+                    ({{ fQuestion.value_1 }})
+                    <br>
+                    - {{ fQuestion.answer_2 }}
+                    ({{ fQuestion.value_2 }})
+
+                    {% if fQuestion.answer_3 %}
+                        <br>
+                        - {{ fQuestion.answer_3 }}
+                        ({{ fQuestion.value_3 }})
+                    {% endif %}
+
+                    {% if fQuestion.answer_4 %}
+                        <br>
+                        - {{ fQuestion.answer_4 }}
+                        ({{ fQuestion.value_4 }})
+                    {% endif %}
+
+                    {% if fQuestion.answer_5 %}
+                        <br>
+                        - {{ fQuestion.answer_5 }}
+                        ({{ fQuestion.value_5 }})
+                    {% endif %}
+
+                    {% if fQuestion.answer_6 %}
+                        <br>
+                        - {{ fQuestion.answer_6 }}
+                        ({{ fQuestion.value_6 }})
+                    {% endif %}
+
+                    {% if fQuestion.answer_7 %}
+                        <br>
+                        - {{ fQuestion.answer_7 }}
+                        ({{ fQuestion.value_7 }})
+                    {% endif %}
+
+                    {% if fQuestion.answer_8 %}
+                        <br>
+                        - {{ fQuestion.answer_8 }}
+                        ({{ fQuestion.value_8 }})
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</section>

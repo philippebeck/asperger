@@ -1,0 +1,47 @@
+<section class="menu-target3">
+    <h2>
+        <i class="fas fa-user-nurse"></i> 
+        Quotient Empathique
+    </h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Réponse</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for eQuestion in eQuestions %}
+            <tr>
+                <td>
+                    {{ eQuestion.id }}.
+                    {{ eQuestion.question }}
+                </td>
+                <td>
+                    {% if eQuestion.answer is not null %}
+
+                        {% if eQuestion.answer is odd %}
+                            D'accord
+                        {% else %}
+                            Pas d'accord
+                        {% endif %}
+                        
+                        <br>
+                    {% endif %}
+
+                    <a class="btn-blue" 
+                        href="{{ url('question!update', 
+                            {'id': eQuestion.id, 'category': 'EQ'}) 
+                        }}"
+                        title="Modifier la Question">
+                        <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</section>
