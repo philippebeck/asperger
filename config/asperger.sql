@@ -60,6 +60,13 @@ CREATE TABLE `FQ` (
   `answer_8`    VARCHAR(255)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `Visitor` (
+  `id`        TINYINT   UNSIGNED  PRIMARY KEY   AUTO_INCREMENT,
+  `test`      CHAR(2)   NOT NULL,
+  `score`     TINYINT   UNSIGNED  NOT NULL,
+  `visitDate` DATETIME  NOT NULL
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
 INSERT INTO `Test` (`category`, `score_type`, `value_max`, `asperger_min`, `asperger_max`, `man_min`, `man_max`, `woman_min`, `woman_max`, `author`, `year`, `translation_author`, `translation_year`) VALUES
 ('AQ', 1, 50, 31, 45, 12, 26, 11, 23, 'Baron-Cohen, Wheelwright, Skinner, Martin & Clubey', 2001, 'Braun & Kempenaers', 2007),
 ('EQ', 2, 80, 9, 33, 26, 51, 37, 59, 'Baron-Cohen & Wheelwright', 2004, 'Besche-Richard, Olivier & Albert', 2006),

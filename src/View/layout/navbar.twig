@@ -9,7 +9,7 @@
         type="radio" 
         name="navbar">
 
-    <a class="anima-slideR" 
+    <a class="anima-slideB" 
         href="./" 
         title="Accueil">
         <img src="img/logo.svg" 
@@ -47,7 +47,26 @@
             </a>
         </li>
     </ul>
-    <ul class="anima-slideL">
+    <ul>
+
+    {% if (isLogged()) %}
+        <li>
+            <a href="{{ url('admin') }}" 
+                title="{{ getUserVar('name') }} Admin">
+                <img class="bord-circle" 
+                    src="img/user/{{ getUserVar('image') }}" 
+                    alt="{{ getUserVar('name') }} Picture">
+            </a>
+        </li>
+        <li>
+            <a class="onto-color-red" 
+                href="{{ url('auth!logout') }}" 
+                title="Déconnexion">
+                <i class="fas fa-sign-out-alt fa-lg"></i>
+            </a>
+        </li>
+
+    {% else %}
         <li>
             <a class="onto-color-tw" 
                 href="{{ url('contact') }}" 
@@ -69,6 +88,15 @@
                 <i class="fab fa-paypal fa-lg fa-fw"></i>
             </a>
         </li>
+        <li>
+            <a class="onto-color-orange" 
+                href="{{ url('auth') }}" 
+                title="Connexion">
+                <i class="fas fa-sign-in-alt fa-lg fa-fw"></i>
+            </a>
+        </li>
+    {% endif %}
+    
     </ul>
     <label for="navbar-close" 
         title="Close the Navigation Menu">

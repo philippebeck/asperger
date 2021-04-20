@@ -1,0 +1,104 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Modifier un Utilisateur{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block main %}
+<main>
+    <form class="form" 
+        method="post" 
+        action={{ url('user!update', {'id': user.id}) }} 
+        enctype="multipart/form-data">
+        <input name="MAX_FILE_SIZE" 
+            type="hidden" 
+            value="1000000">
+        <fieldset>
+            <legend>
+                <img class="bord-violet" 
+                    src="img/user/{{ user.image }}" 
+                    alt="Photo de {{ user.name }}">
+            </legend>
+            <ul>
+                <li>
+                    <label for="name">
+                        Nom
+                    </label>
+                    <input id="name" 
+                        name="name" 
+                        type="text" 
+                        maxlength="50" 
+                        value="{{ user.name }}"
+                        required>
+                </li>
+                <li>
+                    <label for="file">
+                        Photo (max 1Mo)
+                    </label>
+                    <input name="file" 
+                        type="file" 
+                        accept=".jpg, .jpeg, .png, .gif">
+                </li>
+                <li>
+                    <label for="email">
+                        Courriel
+                    </label>
+                    <input id="email" 
+                        name="email" 
+                        type="email" 
+                        maxlength="100" 
+                        minlength="5" 
+                        value="{{ user.email }}"
+                        required>
+                </li>
+                <hr>
+                <li>
+                    <label for="old-pass">
+                        Ancien Mot de Passe
+                    </label>
+                    <input id="old-pass" 
+                        name="old-pass" 
+                        type="password" 
+                        placeholder="Insérer votre Ancien Mot de Passe" 
+                        maxlength="100" 
+                        minlength="8">
+                </li>
+                <li>
+                    <label for="new-pass">
+                        Nouveau Mot de Passe
+                    </label>
+                    <input id="new-pass" 
+                        name="new-pass" 
+                        type="password" 
+                        placeholder="Insérer votre Nouveau Mot de Passe" 
+                        maxlength="100" 
+                        minlength="8">
+                </li>
+                <li>
+                    <label for="conf-pass">
+                        Confirmer le Mot de Passe
+                    </label>
+                    <input id="conf-pass" 
+                        name="conf-pass" 
+                        type="password" 
+                        placeholder="Confirmer votre Nouveau Mot de Passe" 
+                        maxlength="100" 
+                        minlength="8">
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <input type="reset" 
+                        value="Réinitialiser">
+                    <input type="submit" 
+                        value="Modifier">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+    <a class="btn-black btn-lg" 
+        href="{{ url('admin') }}">
+        Quitter
+    </a>
+</main>
+{% endblock %}

@@ -1,0 +1,42 @@
+<section class="menu-target5">
+    <h2>
+        <i class="fas fa-user-cog"></i> 
+        Quotient Méthodique Révisé
+    </h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Réponse</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for sQuestion in sQuestions %}
+            <tr>
+                <td>
+                    {{ sQuestion.id }}.
+                    {{ sQuestion.question }}
+                </td>
+                <td>
+                    {% if sQuestion.answer is odd %}
+                        D'accord
+                    {% else %}
+                        Pas d'accord
+                    {% endif %}
+                    <br>
+                    <a class="btn-blue" 
+                        href="{{ url('question!update', 
+                            {'id': sQuestion.id, 'category': 'SQ'}) 
+                        }}"
+                        title="Modifier la Question">
+                        <i class="fas fa-pen-square fa-fw fa-lg"></i>
+                    </a>
+                 </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</section>

@@ -1,0 +1,90 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Modifier une question{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block main %}
+<main>
+    <form class="form" 
+        method="post" 
+        action={{ url('question!update', {'id': question.id}) }}>
+        <fieldset>
+            <legend>
+                <i class="fas fa-question fa-2x"></i>
+            </legend>
+            <ul>
+                {% if getGetVar("category") is same as "FQ" %}
+
+                {{ include("back/question/complexQuestion.twig") }}
+
+                {% else %}
+                    <li>
+                        <label for="question">
+                            Question
+                        </label>
+                        <textarea id="question" 
+                            name="question" 
+                            rows="4" 
+                            required>{{ question.question }}</textarea>
+                    </li>
+                    <li>
+                        <label for="answer">
+                            Réponse
+                        </label>
+                        <select id="answer" 
+                            name="answer">
+
+                            {% if question.answer is null %}
+                                <option value=""
+                                    selected>
+                                        Aucune sélection
+                                </option>
+                                <option value="0">
+                                    Pas d'accord
+                                </option>
+                                <option value="1">
+                                    D'accord
+                                </option>
+
+                            {% elseif question.answer is odd %}
+                                <option value="1"
+                                    selected>
+                                        D'accord (sélectionné)
+                                </option>
+                                <option value="0">
+                                    Pas d'accord
+                                </option>
+
+                            {% elseif question.answer is even %}
+
+                                <option value="0"
+                                    selected>
+                                        Pas d'accord (sélectionné)
+                                </option>
+                                <option value="1">
+                                    D'accord
+                                </option>
+                                
+                            {% endif %}
+                                
+                        </select>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul>
+                <li>
+                    <input type="reset" 
+                        value="Réinitialiser">
+                    <input type="submit" 
+                        value="Modifier">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+    <a class="btn-black btn-lg" 
+        href="{{ url('admin') }}">
+        Quitter
+    </a>
+</main>
+{% endblock %}

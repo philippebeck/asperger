@@ -1,0 +1,71 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Authentification{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block main %}
+<main>
+    <form class="form" 
+        action="{{ url('auth')}}" 
+        method="post">
+        <fieldset>
+            <ul>
+                <li>
+                    <label class="anima-slideR-this" 
+                        for="email">
+                        Courriel
+                    </label>
+                    <input id="email" 
+                        class="anima-slideL-this" 
+                        name="email" 
+                        type="email" 
+                        placeholder="courriel@domaine.com" 
+                        required>
+                </li>
+                <li>
+                    <label class="anima-slideR-this" 
+                        for="pass">
+                        Mot de Passe
+                    </label>
+                    <input id="pass" 
+                        class="anima-slideL-this" 
+                        name="pass" 
+                        type="password" 
+                        placeholder="********" 
+                        autocomplete="off" 
+                        required>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <div id="recaptcha" 
+                        class="g-recaptcha" 
+                        data-sitekey="6Ld8yugZAAAAAL_DZ8ent3zL3yzAHeGXnCAyGxj9">
+                    </div>
+                </li>
+                <li>
+                    <input class="anima-slideR-this" 
+                        type="reset" 
+                        value="Réinitialiser">
+                    <input class="anima-slideL-this" 
+                        type="submit" 
+                        value="Connexion">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+    <a class="btn-black btn-lg" 
+        href="{{ url('home') }}">
+        Quitter
+    </a>
+</main>
+{% endblock %}
+
+{% block script %}
+    <script src="js/recaptcha.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" 
+        async 
+        defer>
+    </script>
+{% endblock %}
