@@ -5,7 +5,14 @@
 {% block summary %}Test {{ infos.category }} pour le Syndrome d'Asperger{% endblock %}
 
 {% block main %}
-<main>
+<main id="test">
+    <nav class="sidebar">
+        <a href="#test" 
+            title="Retour en haut de page">
+            <i class="fas fa-chevron-circle-up fa-lg fa-fw"></i>
+        </a>
+    </nav>
+    
     <section>
         <h2>Quotient {{ infos.category|replace({'FQ': "Amitié & Relation"}) }}</h2>
 
@@ -133,6 +140,7 @@
                 {% endfor %}
 
                 </table>
+
                 <input class="btn-blue btn-lg" 
                     type="submit" 
                     value="Calculer !">
@@ -141,7 +149,7 @@
                 {{ infos.translation_author }} ({{ infos.translation_year }})</p>
 
         {% else %}
-            {{ include('front/result.twig') }}
+            {{ include('front/test/result.twig') }}
         {% endif %}
         
     </section>

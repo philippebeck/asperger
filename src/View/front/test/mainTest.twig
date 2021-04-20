@@ -5,7 +5,14 @@
 {% block summary %}Test {{ infos.category }} pour le Syndrome d'Asperger{% endblock %}
 
 {% block main %}
-<main>
+<main id="test">
+    <nav class="sidebar">
+        <a href="#test" 
+            title="Retour en haut de page">
+            <i class="fas fa-chevron-circle-up fa-lg fa-fw"></i>
+        </a>
+    </nav>
+
     <section>
         <h2>
             Quotient {{ infos.category|replace({
@@ -18,21 +25,29 @@
         {% if not score %}
             <form method="post" 
                 action="{{ url('test', {'category': infos.category}) }}">
+                
                 <label for="score_type">
                     Méthode de Calcul :
                 </label>
+
                 <select id="score_type" 
                     class="mar-bot-lg" 
                     name="score_type">
+
                     <option value="1" 
 
-                        {% if infos.score_type is odd %}selected{% endif %}>
+                        {% if infos.score_type is odd %}
+                            selected
+                        {% endif %}>
 
                         (fort) = (faible)
                     </option>
+
                     <option value="2"
 
-                        {% if infos.score_type is even %}selected{% endif %}>
+                        {% if infos.score_type is even %}
+                            selected
+                        {% endif %}>
 
                         (fort) = 2*(faible)
                     </option>
@@ -44,12 +59,15 @@
                         <td>
                             <label class="font-sans-serif" 
                                 for="question_{{ question.id }}">
-                                {{ question.id }}. {{ question.question }}
+                                {{ question.id }}. 
+                                {{ question.question }}
                             </label>
+
                             <input id="id_{{ question.id }}" 
                                 type="hidden" 
                                 name="id_{{ question.id }}" 
                                 value="{{ question.id }}">
+
                             <input id="question_{{ question.id }}" 
                                 type="hidden" 
                                 name="question_{{ question.id }}" 
@@ -61,10 +79,12 @@
                             <select class="font-cursive" 
                                 name="answer_{{ question.id }}" 
                                 required>
+
                                 <option value="" 
                                     selected>
                                     -- Votre réponse
                                 </option>
+
                                 <option value="1">
                                     D'accord
                                 </option>
@@ -83,14 +103,21 @@
                 {% endfor %}
 
                 </table>
+
                 <input class="btn-blue btn-lg" 
                     type="submit" 
                     value="Calculer !">
             </form>
-            <p>{{ infos.author }} ({{ infos.year }}) traduit par {{ infos.translation_author }} ({{ infos.translation_year }})</p>
+            <p>
+                {{ infos.author }} 
+                ({{ infos.year }}) 
+                traduit par 
+                {{ infos.translation_author }} 
+                ({{ infos.translation_year }})
+            </p>
             
         {% else %}
-            {{ include('front/result.twig') }}
+            {{ include('front/test/result.twig') }}
         {% endif %}
     </section>
 </main>
