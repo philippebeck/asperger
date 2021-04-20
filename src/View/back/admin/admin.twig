@@ -1,0 +1,101 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block main %}
+<input id="menu-radio1" 
+    class="menu-radio1" 
+    type="radio" 
+    name="menu"
+    checked>
+<input id="menu-radio2" 
+    class="menu-radio2" 
+    type="radio" 
+    name="menu">
+<input id="menu-radio3" 
+    class="menu-radio3" 
+    type="radio" 
+    name="menu">
+<input id="menu-radio4" 
+    class="menu-radio4" 
+    type="radio" 
+    name="menu">
+<input id="menu-radio5" 
+    class="menu-radio5" 
+    type="radio" 
+    name="menu">
+<input id="menu-radio6" 
+    class="menu-radio6" 
+    type="radio" 
+    name="menu">
+<input id="menu-radio7" 
+    class="menu-radio7" 
+    type="radio" 
+    name="menu">
+
+<nav class="menu">
+    <label for="menu-radio1" 
+        title="Voir les Tests">
+        <i class="fas fa-question-circle"></i>
+        <span>
+            Tests
+        </span>
+    </label>
+    <label for="menu-radio2" 
+        title="Voir les Questions AQ">
+        <i class="fas fa-user-astronaut"></i>
+        <span>
+            AQ
+        </span>
+    </label>
+    <label for="menu-radio3" 
+        title="Voir les Questions EQ">
+        <i class="fas fa-user-nurse"></i>
+        <span>
+            EQ
+        </span>
+    </label>
+    <label for="menu-radio4" 
+        title="Voir les Questions FQ">
+        <i class="fas fa-users"></i>
+        <span>
+            FQ
+        </span>
+    </label>
+    <label for="menu-radio5" 
+        title="Voir les Questions SQ">
+        <i class="fas fa-user-cog"></i>
+        <span>
+            SQ
+        </span>
+    </label>
+    <label for="menu-radio6" 
+        title="Voir les Visiteurs">
+        <i class="fas fa-user-secret"></i>
+        <span>
+            Visiteurs
+        </span>
+    </label>
+    <label for="menu-radio7" 
+        title="Voir les Utilisateurs">
+        <i class="fas fa-user-tie"></i>
+        <span>
+            Utilisateurs
+        </span>
+    </label>
+</nav>
+
+<main class="menu-relay container-90lg-80xl-70wd">
+
+    {{ include("back/admin/listTests.twig") }}
+    {{ include("back/admin/listAQ.twig") }}
+    {{ include("back/admin/listEQ.twig") }}
+    {{ include("back/admin/listFQ.twig") }}
+    {{ include("back/admin/listSQ.twig") }}
+    {{ include("back/admin/listVisitors.twig") }}
+    {{ include("back/admin/listUsers.twig") }}
+
+</main>
+{% endblock %}
