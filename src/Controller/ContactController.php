@@ -14,11 +14,6 @@ use Twig\Error\SyntaxError;
 class ContactController extends MainController
 {
     /**
-     * @var array
-     */
-    private $mail = [];
-
-    /**
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
@@ -26,28 +21,31 @@ class ContactController extends MainController
      */
     public function defaultMethod()
     {
-        if (!empty($this->getPost()->getPostArray())) {
-            $this->mail = $this->getPost()->getPostArray();
-            $this->checkSecurity();
+        if ($this->checkArray($this->getPost())) {
+            $mail = $this->getPost();
+
+            if (isset($mail["g-recaptcha-response"]) && !empty($mail["g-recaptcha-response"])) {
+
+                if ($this->checkRecaptcha($mail["g-recaptcha-response"])) {
+                    $this->sendMail($mail);
+                    
+                    $this->setSession([
+                        "message"   => "Message successfully sent to " . MAIL_USERNAME . " !", 
+                        "type"      => "green"
+                    ]);
+
+                    $this->redirect("home");
+                }
+            }
+
+            $this->setSession([
+                "message"   => "Check the reCAPTCHA !", 
+                "type"      => "red"
+            ]);
+
+            $this->redirect("contact");
         }
 
         return $this->render("front/contact.twig");
-    }
-
-    private function checkSecurity()
-    {
-        if (isset($this->mail["g-recaptcha-response"]) && !empty($this->mail["g-recaptcha-response"])) {
-
-            if ($this->getSecurity()->checkRecaptcha($this->mail["g-recaptcha-response"])) {
-                $this->getMail()->sendMessage($this->mail);
-                $this->getSession()->createAlert("Message Envoyé avec Succès à " . MAIL_USERNAME . " !", "green");
-
-                $this->redirect("home");
-            }
-        }
-
-        $this->getSession()->createAlert("Vérifier le reCAPTCHA !", "red");
-
-        $this->redirect("contact");
     }
 }

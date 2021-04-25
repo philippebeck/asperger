@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Controller\Service\TestManager;
-use Pam\Model\Factory\ModelFactory;
+use App\Controller\TestManager;
+use Pam\Model\ModelFactory;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -22,38 +22,38 @@ class TestController extends TestManager
      */
     public function defaultMethod()
     {
-        if (!empty($this->getPost()->getPostArray())) {
+        if ($this->checkArray($this->getPost())) {
 
             $this->setSummary($this->getPostData());
             $this->getValues();
             $this->calculateScore();
             $this->createVisitorData();
 
-            if ($this->getGet()->getGetVar("category") !== "FQ") {
+            if ($this->getGet("category") !== "FQ") {
 
-                return $this->render("front/test/mainTest.twig", [
+                return $this->render("front/mainTest.twig", [
                     "infos"     => $this->infos,
                     "summary"   => $this->summary,
                     "score"     => $this->score
                 ]);
             }
 
-            return $this->render("front/test/specialTest.twig", [
+            return $this->render("front/specialTest.twig", [
                 "infos"     => $this->infos,
                 "summary"   => $this->summary,
                 "score"     => $this->score
             ]);
         }
 
-        if ($this->getGet()->getGetVar("category") !== "FQ") {
+        if ($this->getGet("category") !== "FQ") {
 
-            return $this->render("front/test/mainTest.twig", [
+            return $this->render("front/mainTest.twig", [
                     "infos" => $this->infos,
                     "test"  => $this->test
                 ]);
         }
 
-        return $this->render("front/test/specialTest.twig", [
+        return $this->render("front/specialTest.twig", [
             "infos" => $this->infos,
             "test"  => $this->test
         ]);
@@ -67,31 +67,29 @@ class TestController extends TestManager
      */
     public function updateMethod()
     {
-        if ($this->getSecurity()->checkIsAdmin() !== true) {
+        if ($this->checkAdmin() !== true) {
             $this->redirect("home");
         }
 
-        if (!empty($this->getPost()->getPostArray())) {
+        if ($this->checkArray($this->getPost())) {
             $test = $this->setTestData();
    
             ModelFactory::getModel("Test")->updateData(
-                $this->getGet()->getGetVar("id"), $test
+                $this->getGet("id"), 
+                $test
             );
 
-            $this->getSession()->createAlert(
-                "Modification du test effectuée!", "blue"
-            );
+            $this->setSession([
+                "message"   => "Modification du test effectuée!", 
+                "type"      => "blue"
+            ]);
     
             $this->redirect("admin");
         }
 
-        $test = ModelFactory::getModel("Test")->readData(
-            $this->getGet()->getGetVar("id")
-        );
+        $test = ModelFactory::getModel("Test")->readData($this->getGet("id"));
 
-        return $this->render("back/test/updateTest.twig", [
-            "test" => $test
-        ]);
+        return $this->render("back/updateTest.twig", ["test" => $test]);
     }
 
      // ******************************************************* \\
@@ -99,7 +97,7 @@ class TestController extends TestManager
 
     private function createVisitorData()
     {
-        $visitorData["test"]        = $this->getGet()->getGetVar("category");
+        $visitorData["test"]        = $this->getGet("category");
         $visitorData["score"]       = $this->score;
         $visitorData["visitDate"]   = date('Y-m-d H:i:s');
 
@@ -111,22 +109,22 @@ class TestController extends TestManager
      */
     private function setTestData()
     {
-        $test["category"]             = (string) trim($this->getPost()->getPostVar("category"));
-        $test["author"]               = (string) trim($this->getPost()->getPostVar("author"));
-        $test["translation_author"]   = (string) trim($this->getPost()->getPostVar("translation_author"));
+        $test["category"]             = (string) trim($this->getPost("category"));
+        $test["author"]               = (string) trim($this->getPost("author"));
+        $test["translation_author"]   = (string) trim($this->getPost("translation_author"));
 
-        $test["value_max"]        = (int) $this->getPost()->getPostVar("value_max");
-        $test["asperger_min"]     = (int) $this->getPost()->getPostVar("asperger_min");
-        $test["asperger_max"]     = (int) $this->getPost()->getPostVar("asperger_max");
-        $test["man_min"]          = (int) $this->getPost()->getPostVar("man_min");
-        $test["man_max"]          = (int) $this->getPost()->getPostVar("man_max");
-        $test["woman_min"]        = (int) $this->getPost()->getPostVar("woman_min");
-        $test["woman_max"]        = (int) $this->getPost()->getPostVar("woman_max");
-        $test["year"]             = (int) $this->getPost()->getPostVar("year");
-        $test["translation_year"] = (int) $this->getPost()->getPostVar("translation_year");
+        $test["value_max"]        = (int) $this->getPost("value_max");
+        $test["asperger_min"]     = (int) $this->getPost("asperger_min");
+        $test["asperger_max"]     = (int) $this->getPost("asperger_max");
+        $test["man_min"]          = (int) $this->getPost("man_min");
+        $test["man_max"]          = (int) $this->getPost("man_max");
+        $test["woman_min"]        = (int) $this->getPost("woman_min");
+        $test["woman_max"]        = (int) $this->getPost("woman_max");
+        $test["year"]             = (int) $this->getPost("year");
+        $test["translation_year"] = (int) $this->getPost("translation_year");
 
-        if ($this->getPost()->getPostVar("score_type") !== null) {
-            $test["score_type"] = (int) $this->getPost()->getPostVar("score_type");
+        if ($this->checkArray($this->getPost(), "score_type")) {
+            $test["score_type"] = (int) $this->getPost("score_type");
         }
 
         return $test;

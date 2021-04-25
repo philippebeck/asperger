@@ -59,7 +59,7 @@
     </label>
     <label for="menu-radio4" 
         title="Voir les Questions FQ">
-        <i class="fas fa-users"></i>
+        <i class="fas fa-user-friends"></i>
         <span>
             FQ
         </span>
@@ -73,29 +73,29 @@
     </label>
     <label for="menu-radio6" 
         title="Voir les Visiteurs">
-        <i class="fas fa-user-secret"></i>
+        <i class="fas fa-user"></i>
         <span>
             Visiteurs
         </span>
     </label>
     <label for="menu-radio7" 
-        title="Voir les Utilisateurs">
-        <i class="fas fa-user-tie"></i>
+        title="Voir les Administrateurs">
+        <i class="fas fa-user-ninja"></i>
         <span>
-            Utilisateurs
+            Administrateurs
         </span>
     </label>
 </nav>
 
 <main class="menu-relay container-90lg-80xl-70wd">
 
-    {{ include("back/admin/listTests.twig") }}
-    {{ include("back/admin/listAQ.twig") }}
-    {{ include("back/admin/listEQ.twig") }}
-    {{ include("back/admin/listFQ.twig") }}
-    {{ include("back/admin/listSQ.twig") }}
-    {{ include("back/admin/listVisitors.twig") }}
-    {{ include("back/admin/listUsers.twig") }}
+    {{ include("back/adminTests.twig") }}
+    {{ include("back/adminAQ.twig") }}
+    {{ include("back/adminEQ.twig") }}
+    {{ include("back/adminFQ.twig") }}
+    {{ include("back/adminSQ.twig") }}
+    {{ include("back/adminVisitors.twig") }}
+    {{ include("back/adminUsers.twig") }}
 
 </main>
 {% endblock %}

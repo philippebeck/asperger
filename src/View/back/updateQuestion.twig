@@ -14,9 +14,9 @@
                 <i class="fas fa-question fa-2x"></i>
             </legend>
             <ul>
-                {% if getGetVar("category") is same as "FQ" %}
+                {% if getGet("category") is same as "FQ" %}
 
-                {{ include("back/question/complexQuestion.twig") }}
+                {{ include("back/complexQuestion.twig") }}
 
                 {% else %}
                     <li>
