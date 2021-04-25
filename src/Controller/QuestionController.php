@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use Pam\Controller\MainController;
-use Pam\Model\Factory\ModelFactory;
+use Pam\Model\ModelFactory;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -38,29 +38,29 @@ class QuestionController extends MainController
      */
     public function updateMethod()
     {
-        if ($this->getSecurity()->checkIsAdmin() !== true) {
+        if ($this->checkAdmin() !== true) {
             $this->redirect("home");
         }
 
-        if (!empty($this->getPost()->getPostArray())) {
+        if ($this->checkArray($this->getPost())) {
             $this->checkTestCategory();
 
-            ModelFactory::getModel($this->getGet()->getGetVar("category"))->updateData(
-                $this->getGet()->getGetVar("id"), $this->question
+            ModelFactory::getModel($this->getGet("category"))->updateData(
+                $this->getGet("id"), 
+                $this->question
             );
     
-            $this->getSession()->createAlert(
-                "Modification de la Question effectuée !", "blue"
-            );
+            $this->setSession([
+                "message"   => "Modification de la Question effectuée !", 
+                "type"      => "blue"
+            ]);
     
             $this->redirect("admin");
         }
 
-        $question = ModelFactory::getModel($this->getGet()->getGetVar("category"))->readData(
-            $this->getGet()->getGetVar("id")
-        );
+        $question = ModelFactory::getModel($this->getGet("category"))->readData($this->getGet("id"));
 
-        return $this->render("back/question/updateQuestion.twig", [
+        return $this->render("back/updateQuestion.twig", [
             "question" => $question
         ]);
     }
@@ -70,28 +70,24 @@ class QuestionController extends MainController
 
     private function setSimpleQuestionData()
     {
-        $this->question["question"] = (string) trim(
-            $this->getPost()->getPostVar("question")
-        );
+        $this->question["question"] = (string) trim($this->getPost("question"));
 
-        if ($this->getPost()->getPostVar("answer") !== null) {
-            $this->question["answer"] = $this->getPost()->getPostVar("answer");
+        if ($this->checkArray($this->getPost(), "answer")) {
+            $this->question["answer"] = $this->getPost("answer");
         }
     }
 
     private function setComplexQuestionData()
     {
-        $this->question["answers"] = (int) $this->getPost()->getPostVar("answers");
-        $this->question["value_1"] = (int) $this->getPost()->getPostVar("value_1");
-        $this->question["value_2"] = (int) $this->getPost()->getPostVar("value_2");
+        $this->question["answers"] = (int) $this->getPost("answers");
+        $this->question["value_1"] = (int) $this->getPost("value_1");
+        $this->question["value_2"] = (int) $this->getPost("value_2");
 
         $this->checkValues();
         $this->checkAnswers();
 
-        if ($this->getPost()->getPostVar("question") !== null) {
-            $this->question["question"] = (string) trim(
-                $this->getPost()->getPostVar("question")
-            );
+        if ($this->checkArray($this->getPost(), "question")) {
+            $this->question["question"] = (string) trim($this->getPost("question"));
         }
     }
 
@@ -100,7 +96,7 @@ class QuestionController extends MainController
 
     private function checkTestCategory()
     {
-        if ($this->getPost()->getPostVar("category") === "FQ") {
+        if ($this->getPost("category") === "FQ") {
             $this->setComplexQuestionData();
 
         } else {
@@ -110,63 +106,63 @@ class QuestionController extends MainController
 
     private function checkValues()
     {
-        if ($this->getPost()->getPostVar("value_3") !== null) {
-            $this->question["value_3"] = (int) $this->getPost()->getPostVar("value_3");
+        if ($this->checkArray($this->getPost(), "value_3")) {
+            $this->question["value_3"] = (int) $this->getPost("value_3");
         }
 
-        if ($this->getPost()->getPostVar("value_4") !== null) {
-            $this->question["value_4"] = (int) $this->getPost()->getPostVar("value_4");
+        if ($this->checkArray($this->getPost(), "value_4")) {
+            $this->question["value_4"] = (int) $this->getPost("value_4");
         }
 
-        if ($this->getPost()->getPostVar("value_5") !== null) {
-            $this->question["value_5"] = (int) $this->getPost()->getPostVar("value_5");
+        if ($this->checkArray($this->getPost(), "value_5")) {
+            $this->question["value_5"] = (int) $this->getPost("value_5");
         }
 
-        if ($this->getPost()->getPostVar("value_6") !== null) {
-            $this->question["value_6"] = (int) $this->getPost()->getPostVar("value_6");
+        if ($this->checkArray($this->getPost(), "value_6")) {
+            $this->question["value_6"] = (int) $this->getPost("value_6");
         }
 
-        if ($this->getPost()->getPostVar("value_7") !== null) {
-            $this->question["value_7"] = (int) $this->getPost()->getPostVar("value_7");
+        if ($this->checkArray($this->getPost(), "value_7")) {
+            $this->question["value_7"] = (int) $this->getPost("value_7");
         }
 
-        if ($this->getPost()->getPostVar("value_8") !== null) {
-            $this->question["value_8"] = (int) $this->getPost()->getPostVar("value_8");
+        if ($this->checkArray($this->getPost(), "value_8")) {
+            $this->question["value_8"] = (int) $this->getPost("value_8");
         }
     }
 
     private function checkAnswers()
     {
-        if ($this->getPost()->getPostVar("answer_1") !== null) {
-            $this->question["answer_1"] = (string) trim($this->getPost()->getPostVar("answer_1"));
+        if ($this->checkArray($this->getPost(), "answer_1")) {
+            $this->question["answer_1"] = (string) trim($this->getPost("answer_1"));
         }
 
-        if ($this->getPost()->getPostVar("answer_2") !== null) {
-            $this->question["answer_2"] = (string) trim($this->getPost()->getPostVar("answer_2"));
+        if ($this->checkArray($this->getPost(), "answer_2")) {
+            $this->question["answer_2"] = (string) trim($this->getPost("answer_2"));
         }
 
-        if ($this->getPost()->getPostVar("answer_3") !== null) {
-            $this->question["answer_3"] = (string) trim($this->getPost()->getPostVar("answer_3"));
+        if ($this->checkArray($this->getPost(), "answer_3")) {
+            $this->question["answer_3"] = (string) trim($this->getPost("answer_3"));
         }
 
-        if ($this->getPost()->getPostVar("answer_4") !== null) {
-            $this->question["answer_4"] = (string) trim($this->getPost()->getPostVar("answer_4"));
+        if ($this->checkArray($this->getPost(), "answer_4")) {
+            $this->question["answer_4"] = (string) trim($this->getPost("answer_4"));
         }
 
-        if ($this->getPost()->getPostVar("answer_5") !== null) {
-            $this->question["answer_5"] = (string) trim($this->getPost()->getPostVar("answer_5"));
+        if ($this->checkArray($this->getPost(), "answer_5")) {
+            $this->question["answer_5"] = (string) trim($this->getPost("answer_5"));
         }
 
-        if ($this->getPost()->getPostVar("answer_6") !== null) {
-            $this->question["answer_6"] = (string) trim($this->getPost()->getPostVar("answer_6"));
+        if ($this->checkArray($this->getPost(), "answer_6")) {
+            $this->question["answer_6"] = (string) trim($this->getPost("answer_6"));
         }
 
-        if ($this->getPost()->getPostVar("answer_7") !== null) {
-            $this->question["answer_7"] = (string) trim($this->getPost()->getPostVar("answer_7"));
+        if ($this->checkArray($this->getPost(), "answer_7")) {
+            $this->question["answer_7"] = (string) trim($this->getPost("answer_7"));
         }
 
-        if ($this->getPost()->getPostVar("answer_8") !== null) {
-            $this->question["answer_8"] = (string) trim($this->getPost()->getPostVar("answer_8"));
+        if ($this->checkArray($this->getPost(), "answer_8")) {
+            $this->question["answer_8"] = (string) trim($this->getPost("answer_8"));
         }
     }
 }
