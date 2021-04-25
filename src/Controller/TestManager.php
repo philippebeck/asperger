@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller\Service;
+namespace App\Controller;
 
 use Pam\Controller\MainController;
-use Pam\Model\Factory\ModelFactory;
+use Pam\Model\ModelFactory;
 
 /**
  * Class TestManager
@@ -54,18 +54,18 @@ abstract class TestManager extends MainController
     {
         parent::__construct();
 
-        if (array_key_exists("category", $this->getGet()->getGetArray())) {
-            switch ($this->getGet()->getGetVar("category")) {
+        if (array_key_exists("category", $this->getGet())) {
+            switch ($this->getGet("category")) {
 
                 case 'AQ':
                 case 'EQ':
                 case 'FQ':
                 case 'SQ':
                     $this->infos = ModelFactory::getModel("Test")->readData(
-                        $this->getGet()->getGetVar("category"), "category"
+                        $this->getGet("category"), 
+                        "category"
                     );
-                    $this->test = ModelFactory::getModel(
-                        $this->getGet()->getGetVar("category"))->listData();
+                    $this->test = ModelFactory::getModel($this->getGet("category"))->listData();
                     break;
     
                 default:
@@ -82,14 +82,14 @@ abstract class TestManager extends MainController
      */
     protected function getPostData()
     {
-        if ($this->getGet()->getGetVar("category") === "FQ") {
+        if ($this->getGet("category") === "FQ") {
 
-            return $this->getPost()->getPostArray();
+            return $this->getPost();
         }
         
-        if ($this->getGet()->getGetVar("category") !== "FQ") {
+        if ($this->getGet("category") !== "FQ") {
 
-            return array_slice($this->getPost()->getPostArray(), 1);
+            return array_slice($this->getPost(), 1);
         }
     }
 
@@ -110,10 +110,10 @@ abstract class TestManager extends MainController
 
     protected function getValues()
     {
-        if ($this->getGet()->getGetVar("category") !== "FQ") {
+        if ($this->getGet("category") !== "FQ") {
             $this->getMainValues();
 
-        } else if ($this->getGet()->getGetVar("category") === "FQ") {
+        } else if ($this->getGet("category") === "FQ") {
             $this->getSpecialValues();
         }
     }
@@ -130,7 +130,7 @@ abstract class TestManager extends MainController
 
     private function getMainValues()
     {
-        $calculationType  = (int) $this->getPost()->getPostArray()["score_type"];
+        $calculationType  = (int) $this->getPost("score_type");
 
         for($i = 0; $i < $this->questionsCount; $i++) {
             $this->checkCalculationType($calculationType, $i);
