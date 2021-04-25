@@ -21,7 +21,13 @@
                 <td>
                     {{ visitor.test }}:
                     {{ visitor.score }}
-                 </td>
+                    <br>
+                    <a class="btn-red" 
+                        href="{{ url('visitor!delete', {'id': visitor.id}) }}"
+                        title="Supprimer le Visiteur">
+                        <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
 

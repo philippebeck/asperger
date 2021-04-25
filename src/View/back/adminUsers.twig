@@ -13,7 +13,6 @@
         <thead>
             <tr>
                 <th>Administrateur</th>
-                <th>Courriel</th>
             </tr>
         </thead>
         <tbody>
@@ -29,20 +28,20 @@
                             {{ user.name }}
                         </figcaption>
                     </figure>
-                </td>
-                <td>
-                    {{ user.email }}
-                    <br>
                     <a class="btn-blue" 
                         href="{{ url('user!update', {'id': user.id}) }}"
-                        title="Modifier l'Administrateur">
+                        title="Modifier l'Utilisateur">
                         <i class="fas fa-pen-square fa-fw fa-lg"></i>
                     </a>
                     <a class="btn-red" 
                         href="{{ url('user!delete', {'id': user.id}) }}"
-                        title="Supprimer l'Administrateur">
+                        title="Supprimer l'Utilisateur">
                         <i class="fas fa-times-circle fa-fw fa-lg"></i>
                     </a>
+                    <br>
+                    <p>
+                        {{ user.email }}
+                    </p>
                 </td>
             </tr>
         {% endfor %}
