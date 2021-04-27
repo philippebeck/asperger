@@ -145,7 +145,7 @@ class UserController extends MainController
             $this->redirect("admin");
         }
 
-        return $this->render("back/user/createUser.twig");
+        return $this->render("back/createUser.twig");
     }
 
     /**
@@ -166,7 +166,7 @@ class UserController extends MainController
 
         $user = ModelFactory::getModel("User")->readData($this->getGet("id"));
 
-        return $this->render("back/user/updateUser.twig", ["user" => $user]);
+        return $this->render("back/updateUser.twig", ["user" => $user]);
     }
 
     public function deleteMethod()
